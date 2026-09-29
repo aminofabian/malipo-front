@@ -1,4 +1,5 @@
 ---
+import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
 ---
 
 <section class="hero" aria-label="KioskPay hero">
@@ -31,8 +32,8 @@
       </p>
 
       <div class="hero__ctas">
-        <a class="btn btn-fill" href="#join">Join Now</a>
-        <a class="btn btn-ghost" href="#login">Log In</a>
+        <a class="btn btn-fill" href={CONNECT_SIGNUP}>Join Now</a>
+        <a class="btn btn-ghost" href={CONNECT_SIGNIN}>Log In</a>
       </div>
 
       <ul class="hero__rails" aria-label="Settlement destinations">

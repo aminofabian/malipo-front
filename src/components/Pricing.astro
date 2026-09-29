@@ -1,4 +1,6 @@
 ---
+import { CONNECT_SIGNUP } from "../lib/urls";
+
 const bands = [
   { from: 1, to: 10, fee: 0 },
   { from: 11, to: 49, fee: 1 },
@@ -118,7 +120,7 @@ const api = import.meta.env.PUBLIC_MALIPO_API || (import.meta.env.DEV ? "http://
         <h3>Ready to accept payments?</h3>
         <p>Create a free merchant account and start collecting M-Pesa payments.</p>
       </div>
-      <a class="btn btn-fill" href="/#join">Create a free account</a>
+      <a class="btn btn-fill" href={CONNECT_SIGNUP}>Create a free account</a>
     </div>
   </div>
 </section>

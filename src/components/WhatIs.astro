@@ -1,4 +1,5 @@
 ---
+import { CONNECT_SIGNUP } from "../lib/urls";
 ---
 
 <section class="what" id="rails" data-index="02">
@@ -39,7 +40,7 @@
           destination. The platform shortcode collects; settlement follows the destination they
           confirmed.
         </p>
-        <a class="stage__link" href="#join">Explore</a>
+        <a class="stage__link" href={CONNECT_SIGNUP}>Explore</a>
       </article>
       <div class="stage__visual" aria-hidden="true">
         <div class="till">
@@ -73,7 +74,7 @@
           The hardest part of M-Pesa integration is credential choreography. KioskPay removes it.
           One confirm screen, one test shilling, then live prompts on the till and the storefront.
         </p>
-        <a class="stage__link" href="#join">Explore</a>
+        <a class="stage__link" href={CONNECT_SIGNUP}>Explore</a>
       </article>
     </div>
 
@@ -86,7 +87,7 @@
         storefront that already know your stock.
       </p>
       <p class="closer__tag">KioskPay is more than a gateway. It is the money path for Kiosk.</p>
-      <a class="btn btn-fill" href="#join">Join Now</a>
+      <a class="btn btn-fill" href={CONNECT_SIGNUP}>Join Now</a>
     </div>
   </div>
 </section>

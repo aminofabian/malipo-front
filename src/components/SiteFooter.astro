@@ -1,4 +1,5 @@
 ---
+import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
 ---
 
 <footer class="site-footer" id="join">
@@ -8,8 +9,8 @@
       <p class="site-footer__banner-copy">Ready when the till is. Destinations in, money out.</p>
     </div>
     <div class="site-footer__cta">
-      <a class="btn btn-ghost" href="#login">Log In</a>
-      <a class="btn btn-fill" href="#login">Join Now</a>
+      <a class="btn btn-ghost" href={CONNECT_SIGNIN}>Log In</a>
+      <a class="btn btn-fill" href={CONNECT_SIGNUP}>Join Now</a>
     </div>
   </div>
 
@@ -32,7 +33,7 @@
       <h3>Company</h3>
       <a href="https://kiosk.ke">Kiosk.ke</a>
       <a href="mailto:support@kiosk.ke">Support</a>
-      <a href="#login">Console</a>
+      <a href={CONNECT_SIGNIN}>Console</a>
     </div>
     <div>
       <h3>Legal</h3>
