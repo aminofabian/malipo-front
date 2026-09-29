@@ -1,0 +1,191 @@
+---
+---
+
+<footer class="site-footer" id="join">
+  <div class="shell site-footer__banner reveal">
+    <div>
+      <h2>Join the money path</h2>
+      <p class="site-footer__banner-copy">Ready when the till is. Destinations in, money out.</p>
+    </div>
+    <div class="site-footer__cta">
+      <a class="btn btn-ghost" href="#login">Log In</a>
+      <a class="btn btn-fill" href="#login">Join Now</a>
+    </div>
+  </div>
+
+  <div class="shell site-footer__top">
+    <a class="wordmark" href="/">Kioskpay</a>
+    <p class="site-footer__tag">Malipo moves the money. KioskPay is the front door.</p>
+  </div>
+
+  <div class="shell site-footer__grid">
+    <div>
+      <h3>Product</h3>
+      <a href="/#product">Overview</a>
+      <a href="/#rails">Rails</a>
+      <a href="/#wordpress">WordPress plugin</a>
+      <a href="/fees">Fees</a>
+      <a href="/#audience">Audience</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <a href="https://kiosk.ke">Kiosk.ke</a>
+      <a href="mailto:support@kiosk.ke">Support</a>
+      <a href="#login">Console</a>
+    </div>
+    <div>
+      <h3>Legal</h3>
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+
+  <div class="shell site-footer__base">
+    <p>Copyright © {new Date().getFullYear()} Kiosk Technologies Ltd. All rights reserved.</p>
+    <p id="login">Built for Kenyan shops on Kiosk</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #0d0d0d;
+    color: #f4f4f4;
+    padding: clamp(3rem, 7vw, 5rem) 0 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .site-footer::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -5%;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 242, 127, 0.16), transparent 70%);
+    pointer-events: none;
+  }
+
+  .site-footer a {
+    color: inherit;
+  }
+
+  .site-footer__banner {
+    position: relative;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2.5rem;
+    border-radius: 0;
+    background: linear-gradient(135deg, rgba(254, 242, 127, 0.14), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(254, 242, 127, 0.22);
+  }
+
+  .site-footer__banner h2 {
+    margin: 0;
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+  }
+
+  .site-footer__banner-copy {
+    margin: 0.55rem 0 0;
+    color: rgba(255, 255, 255, 0.58);
+    max-width: 36ch;
+    line-height: 1.45;
+  }
+
+  .site-footer__cta {
+    display: flex;
+    gap: 0.65rem;
+  }
+
+  .site-footer__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .site-footer .wordmark {
+    letter-spacing: 0.36em;
+  }
+
+  .site-footer__tag {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.95rem;
+  }
+
+  .site-footer .btn-ghost {
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #fff;
+  }
+
+  .site-footer .btn-fill {
+    color: #111;
+  }
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    padding: 2.5rem 0;
+  }
+
+  .site-footer__grid h3 {
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .site-footer__grid div {
+    display: grid;
+    gap: 0.7rem;
+    align-content: start;
+  }
+
+  .site-footer__grid a {
+    font-weight: 500;
+    transition: color var(--dur-fast) ease;
+  }
+
+  .site-footer__grid a:hover {
+    color: var(--yellow);
+  }
+
+  .site-footer__base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.92rem;
+  }
+
+  .site-footer__base p {
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .site-footer__banner {
+      align-items: start;
+    }
+  }
+</style>

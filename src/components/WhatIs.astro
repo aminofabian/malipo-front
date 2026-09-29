@@ -1,0 +1,466 @@
+---
+---
+
+<section class="what" id="rails" data-index="02">
+  <div class="shell">
+    <header class="what__head reveal">
+      <span class="kicker">02 — Rails</span>
+      <h2>What is KioskPay?</h2>
+      <p>
+        A single payments surface for shops that already sell on Kiosk. Enter where money should
+        land. Malipo moves it. Your till, wallet, and storefront stay in sync.
+      </p>
+    </header>
+
+    <ul class="what__rails reveal">
+      <li>
+        <strong>STK</strong>
+        <span>Prompt lands on the customer phone</span>
+      </li>
+      <li>
+        <strong>Wallet</strong>
+        <span>Balance you can withdraw to M-Pesa</span>
+      </li>
+      <li>
+        <strong>Card</strong>
+        <span>Checkout beside till and paybill</span>
+      </li>
+      <li>
+        <strong>Keys</strong>
+        <span>One request to charge a phone</span>
+      </li>
+    </ul>
+
+    <div class="stage stage--dest reveal">
+      <article class="stage__copy">
+        <h3>Destinations, not Daraja forms</h3>
+        <p>
+          Merchants never paste consumer keys or passkeys. They pick a till, paybill, or bank
+          destination. The platform shortcode collects; settlement follows the destination they
+          confirmed.
+        </p>
+        <a class="stage__link" href="#join">Explore</a>
+      </article>
+      <div class="stage__visual" aria-hidden="true">
+        <div class="till">
+          <div class="till__badge">Verified</div>
+          <span class="till__label">Buy goods till</span>
+          <strong class="till__num" data-till>3050941</strong>
+          <em>Till 3050941 · rail Daraja</em>
+          <div class="till__bar"><i></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage stage--stk reveal">
+      <div class="stage__visual stage__visual--dark" aria-hidden="true">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <span class="phone__from">M-PESA</span>
+            <p class="phone__ask">Enter PIN to pay</p>
+            <strong class="phone__amt">KES 1,250.00</strong>
+            <span class="phone__to">KioskPay · Till 3050941</span>
+            <div class="phone__dots" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <article class="stage__copy">
+        <h3>Turning payment friction into settled sales</h3>
+        <p>
+          The hardest part of M-Pesa integration is credential choreography. KioskPay removes it.
+          One confirm screen, one test shilling, then live prompts on the till and the storefront.
+        </p>
+        <a class="stage__link" href="#join">Explore</a>
+      </article>
+    </div>
+
+    <div class="closer reveal">
+      <div class="closer__glow" aria-hidden="true"></div>
+      <h3>A one-stop platform for collecting and settling</h3>
+      <p>
+        Finding the right rail for a Kenyan shop should not mean three portals and a support
+        ticket. KioskPay keeps collection, wallet, and withdraw in one place, next to the POS and
+        storefront that already know your stock.
+      </p>
+      <p class="closer__tag">KioskPay is more than a gateway. It is the money path for Kiosk.</p>
+      <a class="btn btn-fill" href="#join">Join Now</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .what {
+    background: #fff;
+    padding: 0 0 clamp(4.5rem, 9vw, 7rem);
+  }
+
+  .what__head {
+    max-width: 40rem;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+
+  .what__head .kicker {
+    margin-bottom: 1rem;
+  }
+
+  .what h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+  }
+
+  .what__head p {
+    margin: 0;
+    max-width: 52ch;
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--ink-muted);
+  }
+
+  .what__rails {
+    list-style: none;
+    margin: 0 0 clamp(2.5rem, 6vw, 4rem);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .what__rails li {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.15rem 1.1rem 1.25rem;
+    border-radius: 0;
+    background: var(--bg);
+    border: 1px solid transparent;
+    transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast) ease, background var(--dur-fast) ease;
+  }
+
+  .what__rails li:hover {
+    transform: translateY(-3px);
+    background: #fff;
+    border-color: rgba(10, 10, 10, 0.1);
+  }
+
+  .what__rails strong {
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+  }
+
+  .what__rails span {
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .stage {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    padding: clamp(2.25rem, 5vw, 3.75rem) 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .stage--stk .stage__copy {
+    order: 2;
+  }
+
+  .stage--stk .stage__visual {
+    order: 1;
+  }
+
+  .stage__copy h3 {
+    margin: 0 0 0.9rem;
+    font-size: clamp(1.65rem, 3.1vw, 2.35rem);
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+  }
+
+  .stage__copy p {
+    margin: 0 0 1.25rem;
+    max-width: 42ch;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  .stage__link {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.28em;
+  }
+
+  .stage__visual {
+    min-height: 300px;
+    border-radius: var(--radius-media);
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(254, 242, 127, 0.45), transparent 55%),
+      var(--bg-soft);
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .stage__visual--dark {
+    background:
+      radial-gradient(ellipse at 70% 10%, rgba(254, 242, 127, 0.18), transparent 45%),
+      #111;
+    color: #fff;
+  }
+
+  .till {
+    width: min(100%, 280px);
+    padding: 1.5rem 1.4rem 1.35rem;
+    border-radius: 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    position: relative;
+    box-shadow: var(--shadow-1);
+    animation: till-pop 0.9s var(--ease-out) both;
+  }
+
+  .till__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: 0;
+    background: rgba(15, 107, 104, 0.1);
+    color: var(--mpesa);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .till__label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mpesa);
+  }
+
+  .till__num {
+    display: block;
+    margin: 0.85rem 0 0.35rem;
+    font-size: 2.15rem;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .till em {
+    font-style: normal;
+    color: #6b6b6b;
+    font-size: 0.92rem;
+  }
+
+  .till__bar {
+    margin-top: 1.1rem;
+    height: 4px;
+    border-radius: 0;
+    background: rgba(10, 10, 10, 0.08);
+    overflow: hidden;
+  }
+
+  .till__bar i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--mpesa), var(--yellow));
+    animation: fill-bar 1.6s 0.4s var(--ease-out) forwards;
+  }
+
+  .phone {
+    width: min(100%, 220px);
+    border-radius: 0;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.65rem 0.65rem 1.1rem;
+    box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.7);
+    animation: phone-rise 1s var(--ease-out) both;
+  }
+
+  .phone__notch {
+    width: 42%;
+    height: 10px;
+    margin: 0.2rem auto 0.85rem;
+    border-radius: 0;
+    background: #0d0d0d;
+  }
+
+  .phone__screen {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 0.35rem;
+    padding: 1.1rem 0.75rem 1.25rem;
+    border-radius: 0;
+    background: #0f0f0f;
+  }
+
+  .phone__from {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--yellow);
+  }
+
+  .phone__ask {
+    margin: 0.35rem 0 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .phone__amt {
+    font-size: 1.55rem;
+    letter-spacing: -0.03em;
+    margin: 0.2rem 0;
+  }
+
+  .phone__to {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .phone__dots {
+    display: flex;
+    gap: 0.45rem;
+    margin-top: 0.85rem;
+  }
+
+  .phone__dots i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    animation: dot-pulse 1.4s var(--ease-in-out) infinite;
+  }
+
+  .phone__dots i:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .phone__dots i:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .phone__dots i:nth-child(4) {
+    animation-delay: 0.45s;
+  }
+
+  .closer {
+    position: relative;
+    margin-top: clamp(2rem, 5vw, 3.5rem);
+    padding: clamp(2.5rem, 5vw, 3.5rem);
+    border-radius: 0;
+    background: var(--bg);
+    max-width: 48rem;
+    overflow: hidden;
+  }
+
+  .closer__glow {
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 242, 127, 0.55), transparent 70%);
+    pointer-events: none;
+  }
+
+  .closer h3 {
+    position: relative;
+    margin: 0 0 0.9rem;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+  }
+
+  .closer p {
+    position: relative;
+    margin: 0 0 1rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    max-width: 48ch;
+  }
+
+  .closer__tag {
+    font-weight: 600;
+    color: var(--ink) !important;
+  }
+
+  .closer .btn {
+    position: relative;
+    margin-top: 0.5rem;
+  }
+
+  @keyframes till-pop {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fill-bar {
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes phone-rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px) rotate(-2deg);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes dot-pulse {
+    0%,
+    100% {
+      background: rgba(255, 255, 255, 0.18);
+      transform: scale(1);
+    }
+    50% {
+      background: var(--yellow);
+      transform: scale(1.15);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .what__rails {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .stage,
+    .stage--stk {
+      grid-template-columns: 1fr;
+    }
+
+    .stage--stk .stage__copy,
+    .stage--stk .stage__visual {
+      order: initial;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .what__rails {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

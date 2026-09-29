@@ -1,0 +1,510 @@
+---
+const bands = [
+  { from: 1, to: 10, fee: 0 },
+  { from: 11, to: 49, fee: 1 },
+  { from: 50, to: 499, fee: 6 },
+  { from: 500, to: 999, fee: 10 },
+  { from: 1000, to: 1499, fee: 15 },
+  { from: 1500, to: 2499, fee: 20 },
+  { from: 2500, to: 3499, fee: 25 },
+  { from: 3500, to: 4999, fee: 30 },
+  { from: 5000, to: 7499, fee: 40 },
+  { from: 7500, to: 9999, fee: 45 },
+  { from: 10000, to: 14999, fee: 50 },
+  { from: 15000, to: 19999, fee: 55 },
+  { from: 20000, to: 34999, fee: 80 },
+  { from: 35000, to: 49999, fee: 105 },
+  { from: 50000, to: 149999, fee: 130 },
+  { from: 150000, to: 249999, fee: 160 },
+  { from: 250000, to: 349999, fee: 195 },
+  { from: 350000, to: 549999, fee: 230 },
+  { from: 550000, to: 749999, fee: 275 },
+  { from: 750000, to: 999999, fee: 320 },
+];
+
+const nf = new Intl.NumberFormat("en-US");
+const kes = (n) => "KES " + nf.format(n);
+
+const half = Math.ceil(bands.length / 2);
+const columns = [bands.slice(0, half), bands.slice(half)];
+
+// Live fee schedule: the page ships with the schedule baked in as a fallback,
+// then refreshes it from the service so super-admin edits show up here too.
+// Set PUBLIC_MALIPO_API at build time for production (e.g. https://api.kiosk.ke).
+const api = import.meta.env.PUBLIC_MALIPO_API || (import.meta.env.DEV ? "http://127.0.0.1:4000" : "");
+---
+
+<section class="fees" id="fees" data-index="06">
+  <div class="shell">
+    <header class="fees__head">
+      <span class="kicker">06 — Fees</span>
+      <h2>Simple fees. No surprises.</h2>
+      <p>
+        See exactly what you pay per transaction by amount range. All fees are in Kenyan Shillings
+        (KES), charged per successful payment.
+      </p>
+    </header>
+
+    <div class="fees__calc">
+      <label class="fees__calc-field" for="fee-amount">
+        <span>Payment amount</span>
+        <span class="fees__input">
+          <em>KES</em>
+          <input id="fee-amount" type="number" inputmode="numeric" min="1" max="999999" value="1000" />
+        </span>
+      </label>
+      <div class="fees__out">
+        <div>
+          <span>You receive</span>
+          <strong id="fee-net">KES 985</strong>
+        </div>
+        <div>
+          <span>Transaction fee</span>
+          <strong id="fee-fee" class="is-fee">KES 15</strong>
+        </div>
+      </div>
+
+      <p class="fees__note" id="fee-note" hidden>
+        Transaction fees are paused right now — you keep the full amount.
+      </p>
+    </div>
+
+    <div class="fees__body">
+      <div class="fees__schedule">
+        <p class="fees__caption">Transaction fee schedule — charged per successful payment</p>
+        <div class="fees__tables" id="fees-tables">
+          {
+            columns.map((col) => (
+              <table class="fees__table">
+                <thead>
+                  <tr>
+                    <th>Amount from</th>
+                    <th>Amount to</th>
+                    <th>Fee</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {col.map((b) => (
+                    <tr>
+                      <td>{kes(b.from)}</td>
+                      <td>{kes(b.to)}</td>
+                      <td>{kes(b.fee)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ))
+          }
+        </div>
+      </div>
+
+      <aside class="fees__notes">
+        <h3>SMS &amp; WhatsApp charges</h3>
+        <p>Optional notification fees per message.</p>
+        <ul class="fees__chan">
+          <li><span>Channel</span><span>Cost per message</span></li>
+          <li><strong>SMS</strong><strong id="rate-sms">KES 0.80</strong></li>
+          <li><strong>WhatsApp</strong><strong id="rate-whatsapp">KES 0.60</strong></li>
+        </ul>
+        <p class="fees__fine">
+          These charges apply only when SMS or WhatsApp notifications are enabled. To stop them, go
+          to <strong>Profile → Edit</strong> and disable SMS and WhatsApp.
+        </p>
+      </aside>
+    </div>
+
+    <div class="fees__cta">
+      <div>
+        <h3>Ready to accept payments?</h3>
+        <p>Create a free merchant account and start collecting M-Pesa payments.</p>
+      </div>
+      <a class="btn btn-fill" href="/#join">Create a free account</a>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ bands, api }}>
+  (function () {
+    var input = document.getElementById("fee-amount");
+    var feeEl = document.getElementById("fee-fee");
+    var netEl = document.getElementById("fee-net");
+    var tablesEl = document.getElementById("fees-tables");
+    var smsEl = document.getElementById("rate-sms");
+    var waEl = document.getElementById("rate-whatsapp");
+    if (!input || !feeEl || !netEl) return;
+
+    var nf = new Intl.NumberFormat("en-US");
+    var kes = function (n) {
+      return "KES " + nf.format(n);
+    };
+    var schedule = bands;
+    var feesOn = true;
+
+    function feeFor(amount) {
+      for (var i = 0; i < schedule.length; i++) {
+        if (amount >= schedule[i].from && amount <= schedule[i].to) return schedule[i].fee;
+      }
+      return null;
+    }
+
+    function update() {
+      var amount = Math.floor(Number(input.value));
+      var fee = amount >= 1 ? feeFor(amount) : null;
+      if (fee === null) {
+        feeEl.textContent = "—";
+        netEl.textContent = "—";
+        return;
+      }
+      if (!feesOn) fee = 0;
+      feeEl.textContent = kes(fee);
+      netEl.textContent = kes(amount - fee);
+    }
+
+    function renderTables(list) {
+      if (!tablesEl) return;
+      var half = Math.ceil(list.length / 2);
+      var cols = [list.slice(0, half), list.slice(half)];
+      tablesEl.innerHTML = cols
+        .map(function (col) {
+          var rows = col
+            .map(function (b) {
+              return (
+                "<tr><td>" +
+                kes(b.from) +
+                "</td><td>" +
+                kes(b.to) +
+                "</td><td>" +
+                kes(b.fee) +
+                "</td></tr>"
+              );
+            })
+            .join("");
+          return (
+            '<table class="fees__table"><thead><tr><th>Amount from</th><th>Amount to</th><th>Fee</th></tr></thead><tbody>' +
+            rows +
+            "</tbody></table>"
+          );
+        })
+        .join("");
+    }
+
+    input.addEventListener("input", update);
+    update();
+
+    if (api) {
+      fetch(api.replace(/\/$/, "") + "/v1/fees", { headers: { accept: "application/json" } })
+        .then(function (r) {
+          return r.ok ? r.json() : null;
+        })
+        .then(function (data) {
+          if (!data) return;
+          if (typeof data.enabled === "boolean") {
+            feesOn = data.enabled;
+            var note = document.getElementById("fee-note");
+            if (note) note.hidden = feesOn;
+            update();
+          }
+          if (Array.isArray(data.bands) && data.bands.length) {
+            schedule = data.bands;
+            renderTables(data.bands);
+            update();
+          }
+          if (smsEl && data.sms_rate) smsEl.textContent = "KES " + data.sms_rate;
+          if (waEl && data.whatsapp_rate) waEl.textContent = "KES " + data.whatsapp_rate;
+        })
+        .catch(function () {
+          /* offline or CORS blocked — keep the baked-in schedule */
+        });
+    }
+  })();
+</script>
+
+<style>
+  .fees {
+    position: relative;
+    background: #fff;
+    padding: clamp(4.5rem, 9vw, 7rem) 0;
+  }
+
+  .fees__head {
+    max-width: 44rem;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+
+  .fees__head .kicker {
+    margin-bottom: 1rem;
+  }
+
+  .fees h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+  }
+
+  .fees__head p {
+    margin: 0;
+    max-width: 54ch;
+    color: var(--ink-muted);
+    font-size: 1.08rem;
+    line-height: 1.65;
+  }
+
+  /* Calculator */
+  .fees__calc {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem 2.5rem;
+    align-items: center;
+    padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--ink);
+    background: var(--surface);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+
+  .fees__calc-field {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .fees__calc-field > span:first-child {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .fees__input {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.3rem;
+  }
+
+  .fees__input em {
+    font-style: normal;
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+  }
+
+  .fees__input input {
+    width: 9ch;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: clamp(1.6rem, 3vw, 2.35rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fees__input input:focus {
+    outline: none;
+  }
+
+  .fees__out {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .fees__out div {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .fees__out span {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .fees__out strong {
+    font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fees__out .is-fee {
+    color: var(--mpesa);
+  }
+
+  .fees__note {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.86rem;
+    color: var(--ink-muted);
+  }
+
+  /* Schedule + notes */
+  .fees__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+    gap: clamp(1.75rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  .fees__caption {
+    margin: 0 0 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .fees__tables {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+  }
+
+  .fees__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .fees__table th {
+    text-align: left;
+    padding: 0.55rem 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .fees__table th:last-child,
+  .fees__table td:last-child {
+    text-align: right;
+  }
+
+  .fees__table td {
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid var(--line);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .fees__table td:last-child {
+    font-weight: 600;
+  }
+
+  .fees__table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .fees__notes {
+    padding: clamp(1.25rem, 3vw, 1.6rem);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .fees__notes h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+
+  .fees__notes p {
+    margin: 0 0 1rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .fees__chan {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: grid;
+  }
+
+  .fees__chan li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .fees__chan li:first-child {
+    border-bottom: 1px solid var(--ink);
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .fees__chan li:first-child span {
+    font-weight: 600;
+  }
+
+  .fees__chan strong {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fees__fine {
+    margin: 0 !important;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    line-height: 1.55;
+  }
+
+  /* CTA */
+  .fees__cta {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+    border: 1px solid var(--ink);
+    background: color-mix(in srgb, var(--yellow) 22%, #fff);
+  }
+
+  .fees__cta h3 {
+    margin: 0 0 0.4rem;
+    font-size: clamp(1.4rem, 2.8vw, 1.95rem);
+    letter-spacing: -0.03em;
+  }
+
+  .fees__cta p {
+    margin: 0;
+    max-width: 44ch;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 900px) {
+    .fees__calc {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .fees__body {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .fees__tables {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .fees__out {
+      gap: 1.5rem;
+    }
+  }
+</style>

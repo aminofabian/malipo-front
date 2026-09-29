@@ -1,0 +1,95 @@
+---
+const settlements = [
+  "TILL 3050941 · KES 1,250.00 · QKH7XYZ123",
+  "PAYBILL 247247 · KES 320.00 · QKH8ABC456",
+  "BANK · ACC 0123456789 · KES 5,000.00 · QKH9DEF789",
+  "TILL 5738421 · KES 75.00 · QKJ1GHI234",
+  "PAYBILL 522522 · KES 2,400.00 · QKJ2JKL567",
+  "TILL 3050941 · KES 1.00 · QKJ3MNO890",
+];
+---
+
+<div class="ticker">
+  <span class="ticker__tag" aria-hidden="true">Example settlements</span>
+  <div class="ticker__viewport" aria-hidden="true">
+    <div class="ticker__track">
+      {
+        [...settlements, ...settlements].map((s) => (
+          <span class="ticker__item">{s}</span>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .ticker {
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ticker__tag {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .ticker__viewport {
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
+
+  .ticker__track {
+    display: flex;
+    gap: 2.5rem;
+    width: max-content;
+    animation: ticker 46s linear infinite;
+  }
+
+  .ticker__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 0;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+
+  .ticker__item::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--mpesa);
+    flex: 0 0 auto;
+  }
+
+  @keyframes ticker {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker__track {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import Pricing from "../components/Pricing.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout
+  title="Fees | KioskPay"
+  description="Simple fees, no surprises. See the KioskPay per-transaction fee schedule by amount range, plus optional SMS and WhatsApp charges."
+>
+  <SiteNav />
+  <main class="fees-page">
+    <Pricing />
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .fees-page {
+    padding-top: clamp(4rem, 9vh, 5.5rem);
+  }
+</style>

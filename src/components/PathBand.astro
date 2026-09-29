@@ -1,0 +1,242 @@
+---
+const steps = [
+  { n: "01", title: "Prompt", body: "The STK push lands on the customer’s phone." },
+  { n: "02", title: "PIN", body: "They authorise it on the handset." },
+  { n: "03", title: "Confirm", body: "Safaricom settles the M-Pesa payment." },
+  { n: "04", title: "Landed", body: "Money reaches your till, paybill, or bank." },
+];
+---
+
+<section class="path" aria-label="How a payment moves">
+  <div class="shell">
+    <header class="path__head">
+      <span class="kicker kicker--invert">Watch a payment land</span>
+      <h2>From PIN to your till, in seconds.</h2>
+    </header>
+
+    <div class="path__flow">
+      <div class="path__line" aria-hidden="true">
+        <span class="path__pulse"></span>
+      </div>
+
+      <ol class="path__steps">
+        {
+          steps.map((s) => (
+            <li>
+              <span class="path__n">{s.n}</span>
+              <strong>{s.title}</strong>
+              <em>{s.body}</em>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <p class="path__receipt">
+      <span class="path__dot" aria-hidden="true"></span>
+      <span>TILL 3050941</span>
+      <span class="path__sep">·</span>
+      <span>KES 1,250.00</span>
+      <span class="path__sep">·</span>
+      <span class="path__key">QKH7XYZ123</span>
+      <span class="path__tag">settled</span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .path {
+    background: #0b0b0b;
+    color: #fff;
+    padding: clamp(4rem, 9vw, 7rem) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .path::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    right: -6%;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 242, 127, 0.14), transparent 70%);
+    pointer-events: none;
+  }
+
+  .path__head {
+    position: relative;
+    max-width: 40rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .path__head h2 {
+    margin: 1rem 0 0;
+    font-size: clamp(1.9rem, 4.2vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+  }
+
+  .path__flow {
+    position: relative;
+  }
+
+  .path__line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.16);
+    overflow: hidden;
+  }
+
+  .path__pulse {
+    position: absolute;
+    top: 0;
+    left: -24%;
+    width: 24%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+    animation: path-travel 3.6s linear infinite;
+  }
+
+  @keyframes path-travel {
+    from {
+      left: -24%;
+    }
+    to {
+      left: 100%;
+    }
+  }
+
+  .path__steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 3vw, 2rem);
+    margin: 0;
+    padding: 0;
+  }
+
+  .path__steps li {
+    position: relative;
+    padding-top: 1.75rem;
+  }
+
+  .path__steps li::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--yellow);
+    box-shadow: 0 0 0 4px #0b0b0b;
+  }
+
+  .path__n {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .path__steps strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+
+  .path__steps em {
+    font-style: normal;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.62);
+    max-width: 26ch;
+    display: block;
+  }
+
+  .path__receipt {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin: clamp(2.25rem, 4vw, 3rem) 0 0;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.03);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .path__dot {
+    width: 8px;
+    height: 8px;
+    background: var(--yellow);
+    box-shadow: 0 0 0 0 rgba(254, 242, 127, 0.6);
+    animation: receipt-ping 2.2s var(--ease-out) infinite;
+  }
+
+  @keyframes receipt-ping {
+    0% {
+      box-shadow: 0 0 0 0 rgba(254, 242, 127, 0.5);
+    }
+    70%,
+    100% {
+      box-shadow: 0 0 0 10px rgba(254, 242, 127, 0);
+    }
+  }
+
+  .path__sep {
+    color: rgba(255, 255, 255, 0.28);
+  }
+
+  .path__key {
+    color: var(--yellow);
+  }
+
+  .path__tag {
+    margin-left: auto;
+    padding: 0.22rem 0.55rem;
+    background: var(--yellow);
+    color: var(--ink);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 720px) {
+    .path__steps {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem 1rem;
+    }
+
+    .path__line {
+      display: none;
+    }
+
+    .path__steps li {
+      padding-top: 0;
+    }
+
+    .path__steps li::before {
+      top: 0.35rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .path__pulse,
+    .path__dot {
+      animation: none;
+    }
+  }
+</style>

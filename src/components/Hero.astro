@@ -1,0 +1,450 @@
+---
+---
+
+<section class="hero" aria-label="KioskPay hero">
+  <div class="hero__orb" aria-hidden="true"></div>
+  <img
+    class="hero__beams"
+    src="/hero-yellow.png"
+    alt=""
+    width="1594"
+    height="772"
+    decoding="async"
+    fetchpriority="high"
+  />
+
+  <div class="shell hero__grid">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">
+        <span class="hero__dot" aria-hidden="true"></span>
+        M-Pesa for Kenyan shops
+      </p>
+
+      <h1>
+        <span class="hero__line">The payments layer</span>
+        <span class="hero__line hero__line--em">for every&nbsp;shop</span>
+      </h1>
+
+      <p class="hero__sub">
+        Point money at a till, paybill, or bank. M-Pesa STK without Daraja forms — destinations in,
+        money out.
+      </p>
+
+      <div class="hero__ctas">
+        <a class="btn btn-fill" href="#join">Join Now</a>
+        <a class="btn btn-ghost" href="#login">Log In</a>
+      </div>
+
+      <ul class="hero__rails" aria-label="Settlement destinations">
+        <li>Buy Goods till</li>
+        <li>Paybill</li>
+        <li>Bank</li>
+      </ul>
+
+      <p class="hero__example">
+        A KES 1,000 sale keeps <strong>KES 985</strong> after fees.
+      </p>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <img
+        class="hero__astronaut"
+        src="/hero-astronaut.png"
+        alt=""
+        width="864"
+        height="668"
+        decoding="async"
+        fetchpriority="high"
+      />
+      <div class="hero__chip">
+        <span class="hero__chip-dot"></span>
+        <span class="hero__chip-label">Settled</span>
+        <span class="hero__chip-key">QKH7XYZ123</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: min(100dvh, 940px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero__orb {
+    position: absolute;
+    top: -18%;
+    left: 2%;
+    width: min(46vw, 520px);
+    height: min(46vw, 520px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 242, 127, 0.5) 0%, rgba(254, 242, 127, 0) 68%);
+    z-index: 0;
+    pointer-events: none;
+    animation: orb-breathe 7s var(--ease-in-out) infinite;
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    width: min(100% - 2rem, 1180px);
+    margin-inline: auto;
+    padding-top: clamp(7rem, 15vh, 9.5rem);
+    padding-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .hero__copy {
+    position: relative;
+    z-index: 3;
+    min-width: 0;
+    max-width: min(38rem, 100%);
+  }
+
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 1.25rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    opacity: 0;
+    animation: fade-up 0.7s var(--ease-out) forwards;
+  }
+
+  .hero__dot {
+    width: 8px;
+    height: 8px;
+    background: var(--mpesa);
+    animation: ping-soft 2.4s var(--ease-out) infinite;
+  }
+
+  .hero__copy h1 {
+    margin: 0;
+    display: grid;
+    gap: 0.16em;
+    font-size: clamp(2.5rem, 4.6vw, 3.9rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+  }
+
+  .hero__line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+    animation: line-in 0.9s var(--ease-out) both;
+  }
+
+  .hero__line:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+
+  .hero__line--em {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .hero__sub {
+    margin: 1.5rem 0 0;
+    max-width: min(34ch, 100%);
+    overflow-wrap: break-word;
+    color: var(--ink-muted);
+    font-size: clamp(1rem, 1.3vw, 1.12rem);
+    line-height: 1.6;
+    opacity: 0;
+    animation: fade-up 0.8s 0.28s var(--ease-out) forwards;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin: 1.9rem 0 0;
+    opacity: 0;
+    animation: fade-up 0.8s 0.4s var(--ease-out) forwards;
+  }
+
+  .hero__rails {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    opacity: 0;
+    animation: fade-up 0.8s 0.5s var(--ease-out) forwards;
+  }
+
+  .hero__rails li {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.55);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .hero__example {
+    margin: 1.15rem 0 0;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-faint);
+    opacity: 0;
+    animation: fade-up 0.8s 0.55s var(--ease-out) forwards;
+  }
+
+  .hero__example strong {
+    color: var(--mpesa);
+  }
+
+  .hero__visual {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    min-height: clamp(300px, 32vw, 430px);
+  }
+
+  .hero__beams {
+    position: absolute;
+    top: -8%;
+    left: 50%;
+    width: min(760px, 88vw);
+    height: auto;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    filter: blur(12px);
+    animation:
+      beam-settle 1.4s var(--ease-out) both,
+      beam-idle 8s 1.4s var(--ease-in-out) infinite;
+  }
+
+  .hero__astronaut {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: min(560px, 116%);
+    height: auto;
+    transform: translateX(-50%);
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+    animation:
+      astro-in 1.2s 0.2s var(--ease-out) both,
+      astro-float 5.5s 1.4s var(--ease-in-out) infinite;
+  }
+
+  .hero__chip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: max-content;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.6rem 0.85rem;
+    background: #fff;
+    border: 1px solid var(--ink);
+    box-shadow: var(--shadow-1);
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    animation: fade-up 0.8s 0.7s var(--ease-out) forwards;
+  }
+
+  .hero__chip-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--mpesa);
+  }
+
+  .hero__chip-label {
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .hero__chip-key {
+    color: var(--mpesa);
+    font-weight: 600;
+  }
+
+  @keyframes orb-breathe {
+    0%,
+    100% {
+      opacity: 0.72;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes beam-settle {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-22px) scale(1.04);
+    }
+    to {
+      opacity: 0.5;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+  }
+
+  @keyframes beam-idle {
+    0%,
+    100% {
+      filter: blur(12px) brightness(1);
+    }
+    50% {
+      filter: blur(12px) brightness(1.08);
+    }
+  }
+
+  @keyframes line-in {
+    from {
+      opacity: 0;
+      transform: translateY(110%);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes astro-in {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(48px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+  }
+
+  @keyframes astro-float {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  @keyframes ping-soft {
+    0% {
+      box-shadow: 0 0 0 0 rgba(15, 107, 104, 0.45);
+    }
+    70%,
+    100% {
+      box-shadow: 0 0 0 9px rgba(15, 107, 104, 0);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.75rem;
+      padding-top: 5.75rem;
+      padding-bottom: 2rem;
+    }
+
+    .hero__copy h1 {
+      font-size: clamp(2.15rem, 8vw, 2.7rem);
+    }
+
+    .hero__sub {
+      margin-top: 1.15rem;
+    }
+
+    .hero__ctas {
+      margin-top: 1.5rem;
+    }
+
+    .hero__rails {
+      margin-top: 1.25rem;
+    }
+
+    .hero__visual {
+      min-height: 250px;
+    }
+
+    .hero__beams {
+      top: -2%;
+      width: min(520px, 116%);
+    }
+
+    .hero__astronaut {
+      width: min(340px, 84%);
+      bottom: -3%;
+    }
+
+    .hero__chip {
+      top: 5%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__orb,
+    .hero__line,
+    .hero__eyebrow,
+    .hero__sub,
+    .hero__ctas,
+    .hero__rails,
+    .hero__example,
+    .hero__astronaut,
+    .hero__chip,
+    .hero__dot,
+    .hero__chip-dot {
+      animation: none !important;
+      opacity: 1;
+      filter: none;
+    }
+
+    .hero__beams {
+      animation: none !important;
+      opacity: 0.5;
+      filter: blur(12px);
+      transform: translateX(-50%);
+    }
+
+    .hero__astronaut {
+      transform: translateX(-50%);
+    }
+  }
+</style>

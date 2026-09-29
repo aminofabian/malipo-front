@@ -1,0 +1,193 @@
+<section class="wp" id="wordpress" data-index="03">
+  <div class="shell wp__grid">
+    <div class="wp__copy reveal">
+      <span class="kicker">03 — WordPress</span>
+      <h2>Take M-Pesa on WordPress</h2>
+      <p>
+        Add the Malipo plugin to your WordPress shop, paste two codes from your Connect setup, and
+        you’re taking M-Pesa. No coding, works with WooCommerce or any page.
+      </p>
+
+      <ul class="wp__list">
+        <li>Works with WooCommerce or any page</li>
+        <li>No coding — just paste and go</li>
+        <li>Payments confirmed automatically</li>
+      </ul>
+
+      <div class="wp__ctas">
+        <a class="btn btn-fill" href="/malipo-payments-0.1.1.zip" download>Download plugin</a>
+        <a class="btn btn-ghost" href="/wordpress">Setup guide</a>
+      </div>
+
+      <p class="wp__meta">Free · v0.1.1 · WordPress 6.0+ · About 5 minutes</p>
+    </div>
+
+    <div class="wp__card reveal" aria-hidden="true">
+      <div class="wp__bar">
+        <span class="wp__dot"></span>
+        <span class="wp__dot"></span>
+        <span class="wp__dot"></span>
+        <span class="wp__file">your-page</span>
+      </div>
+      <pre class="wp__code">{`[malipo_pay
+  amount="100"]`}</pre>
+      <p class="wp__foot">
+        Prompts the customer's phone. Money lands in the till, paybill, or bank you confirmed.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wp {
+    position: relative;
+    background: #fff;
+    padding: clamp(4.5rem, 9vw, 7rem) 0;
+  }
+
+  .wp::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--yellow) 20%, var(--yellow) 80%, transparent);
+  }
+
+  .wp__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(1.75rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+
+  .wp__copy .kicker {
+    margin-bottom: 1rem;
+  }
+
+  .wp h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+  }
+
+  .wp__copy > p {
+    margin: 0;
+    max-width: 46ch;
+    color: var(--ink-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .wp__list {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .wp__list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .wp__list li::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 0;
+    background: var(--yellow);
+    box-shadow: 0 0 0 2px var(--ink);
+    transform: translateY(-1px);
+  }
+
+  .wp__list code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+    background: rgba(10, 10, 10, 0.06);
+    padding: 0.1em 0.4em;
+    border-radius: 0;
+  }
+
+  .wp__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.75rem;
+  }
+
+  .wp__meta {
+    margin: 1rem 0 0;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+  }
+
+  .wp__card {
+    border-radius: var(--radius-media);
+    background:
+      radial-gradient(ellipse at 80% 0%, rgba(254, 242, 127, 0.14), transparent 55%),
+      #111;
+    color: #fff;
+    box-shadow: 0 30px 60px -30px rgba(10, 10, 10, 0.55);
+    overflow: hidden;
+    padding-bottom: 1.25rem;
+  }
+
+  .wp__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .wp__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .wp__dot:first-child {
+    background: var(--yellow);
+  }
+
+  .wp__file {
+    margin-left: auto;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .wp__code {
+    margin: 0;
+    padding: 1.5rem 1.25rem 1.25rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--yellow);
+    overflow-x: auto;
+  }
+
+  .wp__foot {
+    margin: 0;
+    padding: 0 1.25rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 860px) {
+    .wp__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

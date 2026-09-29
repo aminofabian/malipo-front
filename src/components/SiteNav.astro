@@ -1,0 +1,155 @@
+---
+---
+
+<header class="site-nav">
+  <div class="site-nav__bar shell">
+    <a class="wordmark site-nav__brand" href="/" aria-label="KioskPay home">Kioskpay</a>
+
+    <div class="site-nav__actions">
+      <a class="btn btn-ghost" href="/#login">Log In</a>
+      <a class="btn btn-fill" href="/#join">Join Now</a>
+      <button class="site-nav__menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav id="site-menu" class="site-menu" hidden>
+    <a href="/#product">Product</a>
+    <a href="/#rails">Rails</a>
+    <a href="/#wordpress">WordPress</a>
+    <a href="/fees">Fees</a>
+    <a href="/#audience">Who it is for</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#login">Log In</a>
+    <a href="/#join">Join Now</a>
+  </nav>
+</header>
+
+<style>
+  .site-nav {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 20;
+    padding-top: 0.85rem;
+  }
+
+  .site-nav__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
+    gap: 1rem;
+  }
+
+  .site-nav__brand {
+    position: relative;
+    z-index: 1;
+  }
+
+  .site-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .site-nav__menu {
+    width: 44px;
+    height: 44px;
+    margin-left: 0.15rem;
+    display: inline-grid;
+    place-content: center;
+    gap: 5px;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  .site-nav__menu:hover {
+    transform: scale(1.05);
+  }
+
+  .site-nav__menu span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) ease;
+    transform-origin: center;
+  }
+
+  .site-nav__menu[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .site-nav__menu[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-nav__menu[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .site-menu {
+    position: absolute;
+    top: calc(56px + 1.1rem);
+    right: max(1.25rem, calc((100% - var(--max)) / 2));
+    display: grid;
+    gap: 0.35rem;
+    min-width: 220px;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    box-shadow: var(--shadow-2);
+    transform-origin: top right;
+    animation: menu-in 0.28s var(--ease-out);
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .site-menu[hidden] {
+    display: none;
+  }
+
+  .site-menu a {
+    padding: 0.65rem 0.75rem;
+    border-radius: 0;
+    font-weight: 600;
+  }
+
+  .site-menu a:hover {
+    background: var(--yellow);
+  }
+
+  @media (max-width: 720px) {
+    .site-nav__actions .btn {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const menuBtn = document.querySelector(".site-nav__menu");
+  const menu = document.getElementById("site-menu");
+  if (menuBtn instanceof HTMLButtonElement && menu) {
+    menuBtn.addEventListener("click", () => {
+      const open = menu.hasAttribute("hidden");
+      if (open) menu.removeAttribute("hidden");
+      else menu.setAttribute("hidden", "");
+      menuBtn.setAttribute("aria-expanded", String(open));
+    });
+  }
+</script>

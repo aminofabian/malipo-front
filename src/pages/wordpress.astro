@@ -1,0 +1,671 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+const pluginVersion = "0.1.1";
+---
+
+<BaseLayout
+  title="Set up M-Pesa on WordPress | KioskPay"
+  description="Add M-Pesa to your WordPress shop in three simple steps. Download the Malipo plugin, upload it to WordPress, and paste two codes. No code needed."
+>
+  <SiteNav />
+
+  <main class="guide">
+    <div class="shell">
+      <header class="guide__head">
+        <span class="guide__kicker">WordPress setup</span>
+        <h1>Add M-Pesa to your WordPress shop</h1>
+        <p class="guide__lede">
+          Three simple steps. No coding. Works with WooCommerce, or on any page you like.
+        </p>
+        <div class="guide__ctas">
+          <a class="btn btn-fill" href="/malipo-payments-0.1.1.zip" download>Download the plugin</a>
+        </div>
+        <ul class="need">
+          <li>Your WordPress login</li>
+          <li>Your M-Pesa number</li>
+          <li>About 5 minutes</li>
+        </ul>
+      </header>
+
+      <ol class="steps">
+        <li>
+          <h2>Download the plugin</h2>
+          <p>
+            Tap the button above. A small file saves to your computer — remember where it goes (it
+            is usually in your <strong>Downloads</strong> folder).
+          </p>
+          <figure class="dl" aria-hidden="true">
+            <span class="dl__icon">ZIP</span>
+            <span>
+              <span class="dl__name">malipo-payments-{pluginVersion}.zip</span>
+              <span class="dl__meta">Ready to upload to WordPress</span>
+            </span>
+          </figure>
+        </li>
+
+        <li>
+          <h2>Add it to WordPress</h2>
+          <p>
+            In WordPress, open <strong>Plugins → Add New</strong>, click
+            <strong>Upload Plugin</strong>, choose the file you just downloaded, then click
+            <strong>Install Now</strong> and <strong>Activate</strong>.
+          </p>
+          <figure class="wpmock" aria-hidden="true">
+            <div class="wpmock__bar"><span></span><span></span><span></span><em>WordPress</em></div>
+            <div class="wpmock__body">
+              <div class="wpmock__side">
+                <span>Dashboard</span>
+                <span>Posts</span>
+                <span class="on">Plugins</span>
+                <span>Settings</span>
+              </div>
+              <div class="wpmock__main">
+                <div class="wpmock__title">Add New Plugin</div>
+                <span class="wpmock__btn">Upload Plugin</span>
+                <div class="wpmock__file">malipo-payments-{pluginVersion}.zip</div>
+              </div>
+            </div>
+          </figure>
+        </li>
+
+        <li>
+          <h2>Connect your shop</h2>
+          <p>
+            In <strong>Malipo Connect</strong>, open your setup and copy the two codes it shows you.
+            Then, in WordPress, open <strong>Settings → Malipo</strong> and paste them in. Leave
+            everything else exactly as it is, and click <strong>Save changes</strong>.
+          </p>
+          <figure class="wpmock" aria-hidden="true">
+            <div class="wpmock__bar"><span></span><span></span><span></span><em>Settings → Malipo</em></div>
+            <div class="wpmock__form">
+              <label>Payment key<span class="wpmock__input">sk_live_••••••••••••</span></label>
+              <label>Signing code<span class="wpmock__input">whsec_••••••••••••</span></label>
+              <span class="wpmock__save">Save changes</span>
+            </div>
+          </figure>
+          <p class="done">That’s it — your shop can now take M-Pesa. 🎉</p>
+        </li>
+      </ol>
+
+      <section class="ways">
+        <h2>How do customers pay you?</h2>
+        <p class="ways__lede">Pick the one that fits your shop. You can use both.</p>
+
+        <div class="ways__grid">
+          <article class="way">
+            <span class="way__tag">WooCommerce</span>
+            <h3>Sell from your shop</h3>
+            <p>
+              Turn it on in <strong>WooCommerce → Settings → Payments</strong> and enable
+              <strong>M-Pesa (Malipo)</strong>. At checkout, shoppers get the M-Pesa prompt on their
+              phone.
+            </p>
+          </article>
+
+          <article class="way">
+            <span class="way__tag">Any page</span>
+            <h3>Add a pay button</h3>
+            <p>
+              Paste this short piece of text onto any page where you want a pay form. Change
+              <strong>100</strong> to your price.
+            </p>
+            <pre class="code">{`[malipo_pay amount="100"]`}</pre>
+          </article>
+        </div>
+
+        <p class="ways__fees">
+          Fees are per successful payment — <a href="/fees">see the fee schedule</a>.
+        </p>
+      </section>
+
+      <section class="test">
+        <div>
+          <h3>Try it with KES 1</h3>
+          <p>
+            Before you go live, pay 1 shilling from your own phone. When you enter your PIN, the
+            order shows as <strong>paid</strong> and the M-Pesa receipt is saved. If that works,
+            everything works.
+          </p>
+        </div>
+      </section>
+
+      <section class="help">
+        <h2>Need a hand?</h2>
+        <div class="help__list">
+          <details>
+            <summary>I can’t find “Malipo” in Settings</summary>
+            <p>
+              The plugin might not be active yet. Open <strong>Plugins</strong> and look for
+              “Malipo — M-Pesa Payments”, then click <strong>Activate</strong>.
+            </p>
+          </details>
+          <details>
+            <summary>I don’t see M-Pesa at checkout</summary>
+            <p>
+              Make sure it’s switched on in WooCommerce → Settings → Payments, and that your shop’s
+              currency is <strong>Kenyan shilling (KES)</strong>.
+            </p>
+          </details>
+          <details>
+            <summary>A payment isn’t showing as paid</summary>
+            <p>
+              Re-copy your <strong>signing code</strong> from Malipo Connect into Settings → Malipo.
+              If it’s slightly off, payments can’t be confirmed.
+            </p>
+          </details>
+          <details>
+            <summary>It says the phone number is wrong</summary>
+            <p>
+              Use the customer’s M-Pesa number in the usual Kenyan way, for example
+              <strong>0712 345 678</strong>.
+            </p>
+          </details>
+        </div>
+        <p class="help__close">
+          Still stuck? Email <a href="mailto:support@kiosk.ke">support@kiosk.ke</a> and we’ll help.
+        </p>
+      </section>
+
+      <div class="guide__end">
+        <a class="btn btn-fill" href="/malipo-payments-0.1.1.zip" download>Download the plugin</a>
+        <a class="btn btn-ghost" href="/">Back to home</a>
+      </div>
+    </div>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .guide {
+    background:
+      radial-gradient(ellipse at 10% 0%, rgba(254, 242, 127, 0.32), transparent 42%),
+      var(--bg);
+    padding: clamp(7rem, 14vh, 9.5rem) 0 clamp(4rem, 9vw, 6rem);
+  }
+
+  .guide__head {
+    max-width: 40rem;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+
+  .guide__kicker {
+    display: inline-block;
+    margin-bottom: 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mpesa);
+  }
+
+  .guide h1 {
+    margin: 0 0 0.9rem;
+    font-size: clamp(2.1rem, 4.8vw, 3.1rem);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+
+  .guide__lede {
+    margin: 0;
+    max-width: 46ch;
+    color: var(--ink-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .guide__ctas {
+    margin-top: 1.6rem;
+  }
+
+  .need {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.35rem 0 0;
+    padding: 0;
+  }
+
+  .need li {
+    padding: 0.35rem 0.75rem;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(10, 10, 10, 0.08);
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    max-width: 46rem;
+  }
+
+  .steps > li {
+    counter-increment: step;
+    position: relative;
+    padding: 1.6rem 1.6rem 1.6rem 4.5rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: 0 22px 50px -40px rgba(10, 10, 10, 0.4);
+  }
+
+  .steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 1.5rem;
+    top: 1.6rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: grid;
+    place-items: center;
+    border-radius: 0;
+    background: var(--yellow);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 0 0 2px var(--ink);
+  }
+
+  .steps h2 {
+    margin: 0 0 0.6rem;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .steps p {
+    margin: 0;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    max-width: 52ch;
+  }
+
+  .steps strong {
+    color: var(--ink);
+  }
+
+  .done {
+    margin-top: 1rem !important;
+    font-weight: 600;
+    color: var(--ink) !important;
+  }
+
+  /* --- illustrative mockups --- */
+  .dl {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 1.1rem 0 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    background: var(--surface);
+  }
+
+  .dl__icon {
+    flex: 0 0 auto;
+    width: 2.3rem;
+    height: 2.7rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    background: var(--bg-soft);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+  }
+
+  .dl__name {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85rem;
+  }
+
+  .dl__meta {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  .wpmock {
+    margin: 1.1rem 0 0;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 18px 44px -34px rgba(10, 10, 10, 0.5);
+    font-size: 0.82rem;
+  }
+
+  .wpmock__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.8rem;
+    background: #f0f0f1;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .wpmock__bar span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #cfcfcf;
+  }
+
+  .wpmock__bar em {
+    margin-left: auto;
+    font-style: normal;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
+  .wpmock__body {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    min-height: 8.5rem;
+  }
+
+  .wpmock__side {
+    display: grid;
+    gap: 0.15rem;
+    align-content: start;
+    padding: 0.6rem 0.5rem;
+    background: #f6f7f7;
+    border-right: 1px solid var(--line);
+  }
+
+  .wpmock__side span {
+    padding: 0.35rem 0.55rem;
+    border-radius: 0;
+    color: var(--ink-muted);
+    font-size: 0.78rem;
+  }
+
+  .wpmock__side .on {
+    background: #2271b1;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .wpmock__main {
+    padding: 0.85rem 0.95rem;
+  }
+
+  .wpmock__title {
+    margin-bottom: 0.65rem;
+    font-weight: 600;
+  }
+
+  .wpmock__btn,
+  .wpmock__save {
+    display: inline-block;
+    padding: 0.38rem 0.75rem;
+    border-radius: 0;
+    background: #2271b1;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  .wpmock__file {
+    margin-top: 0.7rem;
+    padding: 0.45rem 0.6rem;
+    border: 1px dashed rgba(10, 10, 10, 0.2);
+    border-radius: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+  }
+
+  .wpmock__form {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.95rem 1.05rem 1.1rem;
+  }
+
+  .wpmock__form label {
+    display: grid;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+  }
+
+  .wpmock__input {
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    background: #fff;
+    color: var(--ink);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8rem;
+  }
+
+  .wpmock__save {
+    justify-self: start;
+  }
+
+  /* --- ways to pay --- */
+  .ways {
+    margin-top: clamp(2.75rem, 6vw, 4rem);
+  }
+
+  .ways h2 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.7rem, 3.4vw, 2.2rem);
+    letter-spacing: -0.03em;
+  }
+
+  .ways__lede {
+    margin: 0 0 1.5rem;
+    color: var(--ink-muted);
+  }
+
+  .ways__fees {
+    margin: 1.5rem 0 0;
+    color: var(--ink-muted);
+  }
+
+  .ways__fees a {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .ways__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .way {
+    padding: 1.4rem 1.5rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: 0 22px 50px -40px rgba(10, 10, 10, 0.4);
+  }
+
+  .way__tag {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 0;
+    background: rgba(15, 107, 104, 0.1);
+    color: var(--mpesa);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .way h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+
+  .way p {
+    margin: 0;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .way strong {
+    color: var(--ink);
+  }
+
+  .code {
+    margin: 1rem 0 0;
+    padding: 0.85rem 1rem;
+    border-radius: 0;
+    background: #111;
+    color: var(--yellow);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+  }
+
+  /* --- test callout --- */
+  .test {
+    margin-top: 1rem;
+    padding: 1.4rem 1.6rem;
+    border-radius: 0;
+    background: color-mix(in srgb, var(--yellow) 45%, #fff);
+    border: 1px solid rgba(254, 242, 127, 0.9);
+    box-shadow: 0 22px 50px -40px rgba(10, 10, 10, 0.4);
+  }
+
+  .test h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .test p {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .test strong {
+    color: var(--ink);
+  }
+
+  /* --- help --- */
+  .help {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    max-width: 44rem;
+  }
+
+  .help h2 {
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .help__list {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  details {
+    border-bottom: 1px solid var(--line);
+    padding: 0.2rem 0;
+  }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 2.25rem 1rem 0;
+    font-weight: 600;
+    position: relative;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    content: "";
+    position: absolute;
+    right: 0.15rem;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-right: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    transform: translateY(-65%) rotate(45deg);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  details[open] summary::after {
+    transform: translateY(-20%) rotate(225deg);
+  }
+
+  details p {
+    margin: 0 0 1.1rem;
+    max-width: 58ch;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  .help__close {
+    margin: 1.5rem 0 0;
+    color: var(--ink-muted);
+  }
+
+  .help__close a {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .guide__end {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  @media (max-width: 680px) {
+    .ways__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .steps > li {
+      padding: 1.4rem 1.2rem 1.4rem 3.9rem;
+    }
+
+    .steps > li::before {
+      left: 1.15rem;
+      top: 1.4rem;
+      width: 1.9rem;
+      height: 1.9rem;
+      font-size: 0.92rem;
+    }
+
+    .wpmock__body {
+      grid-template-columns: 1fr;
+    }
+
+    .wpmock__side {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+import "@fontsource-variable/sora";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "KioskPay | Payments for every Kenyan shop",
+  description = "KioskPay is the payments front door for Kiosk. Collect M-Pesa and card, settle to your till, and withdraw when you are ready.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-KE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <!--
+      THESIS: Kenya-kinetic payments homepage; Ignyte yellow/gray/astronaut DNA turned into STK light + till drama.
+      OWN-WORLD: soft gray (#bfc3c7), pale yellow (#fef27f), M-Pesa teal accent, ink, Sora, ghost/fill CTAs, twin yellow beams.
+      STORY: Destinations beat Daraja forms; money arrives; join.
+      FIRST VIEWPORT: Spaced wordmark, kinetic headline, breathing beams, floating astronaut, STK ping.
+      FORM: Ignyte-rooted, creatively amplified for KioskPay.
+    -->
+    <slot />
+    <script>
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce) {
+        const nodes = document.querySelectorAll(".reveal");
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-in");
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+        );
+        nodes.forEach((node) => io.observe(node));
+      } else {
+        document.querySelectorAll(".reveal").forEach((node) => node.classList.add("is-in"));
+      }
+    </script>
+  </body>
+</html>

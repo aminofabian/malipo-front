@@ -1,0 +1,259 @@
+/* KioskPay — sharp editorial. Kenya-kinetic, professional, no rounded corners. */
+:root {
+  --bg: #bfc3c7;
+  --bg-soft: #e3e6e9;
+  --surface: #f7f8f8;
+  --ink: #0a0a0a;
+  --ink-muted: #3a3a3a;
+  --ink-faint: #6b6b6b;
+  --yellow: #fef27f;
+  --yellow-deep: #f5e86a;
+  --mpesa: #0f6b68;
+  --line: rgba(10, 10, 10, 0.12);
+  --hair: rgba(10, 10, 10, 0.16);
+  --radius-btn: 0px;
+  --radius-media: 0px;
+  --nav-h: 72px;
+  --max: 1180px;
+  --font: "Sora Variable", "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur: 520ms;
+  --dur-slow: 900ms;
+  --shadow-1: 0 1px 0 rgba(10, 10, 10, 0.05), 0 20px 44px -30px rgba(10, 10, 10, 0.5);
+  --shadow-2: 0 30px 64px -32px rgba(10, 10, 10, 0.55);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  font-family: var(--font);
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(10, 10, 10, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.028) 1px, transparent 1px);
+  background-size: 38px 38px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Sharp buttons. Ghost / fill / dark. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.55rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  white-space: nowrap;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  background: rgba(10, 10, 10, 0.06);
+}
+
+.btn-fill {
+  background: var(--yellow);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn-fill:hover {
+  background: var(--yellow-deep);
+  box-shadow: 0 12px 26px -14px rgba(10, 10, 10, 0.5);
+}
+
+.btn-dark {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.btn-dark:hover {
+  background: #1c1c1c;
+}
+
+.wordmark {
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Monospace micro-label with a leading rule. */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.kicker::before {
+  content: "";
+  width: 1.6rem;
+  height: 1px;
+  background: var(--ink);
+}
+
+.kicker--invert {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.kicker--invert::before {
+  background: var(--yellow);
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, var(--max));
+  margin-inline: auto;
+}
+
+/* Large ghost index behind each numbered section. */
+[data-index] {
+  position: relative;
+}
+
+[data-index]::after {
+  content: attr(data-index);
+  position: absolute;
+  top: clamp(1.25rem, 4vw, 2.5rem);
+  right: clamp(1rem, 4vw, 2.5rem);
+  z-index: 0;
+  font-family: var(--mono);
+  font-size: clamp(2.5rem, 9vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+  color: rgba(10, 10, 10, 0.05);
+  pointer-events: none;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(4px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out),
+    filter var(--dur-slow) var(--ease-out);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    width: min(100% - 1.5rem, var(--max));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
