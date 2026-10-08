@@ -111,12 +111,12 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   .hero__eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    margin: 0 0 1.25rem;
+    gap: var(--s2);
+    margin: 0 0 var(--s5);
     font-family: var(--mono);
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: var(--ls-kicker);
     text-transform: uppercase;
     color: var(--ink-muted);
     opacity: 0;
@@ -136,7 +136,7 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
     gap: 0.16em;
     font-size: clamp(2.5rem, 4.6vw, 3.9rem);
     font-weight: 600;
-    letter-spacing: -0.045em;
+    letter-spacing: var(--ls-display);
     line-height: 1.04;
   }
 
@@ -157,12 +157,12 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   }
 
   .hero__sub {
-    margin: 1.5rem 0 0;
+    margin: var(--s6) 0 0;
     max-width: min(34ch, 100%);
     overflow-wrap: break-word;
     color: var(--ink-muted);
     font-size: clamp(1rem, 1.3vw, 1.12rem);
-    line-height: 1.6;
+    line-height: var(--lh-loose);
     opacity: 0;
     animation: fade-up 0.8s 0.28s var(--ease-out) forwards;
   }
@@ -170,8 +170,8 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   .hero__ctas {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.7rem;
-    margin: 1.9rem 0 0;
+    gap: var(--s3);
+    margin: var(--s7) 0 0;
     opacity: 0;
     animation: fade-up 0.8s 0.4s var(--ease-out) forwards;
   }
@@ -180,30 +180,30 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 1.75rem 0 0;
+    gap: var(--s2);
+    margin: var(--s7) 0 0;
     padding: 0;
     opacity: 0;
     animation: fade-up 0.8s 0.5s var(--ease-out) forwards;
   }
 
   .hero__rails li {
-    padding: 0.4rem 0.75rem;
+    padding: var(--s2) var(--s3);
     border: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.55);
     font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
+    font-size: var(--fs-2xs);
+    letter-spacing: var(--ls-caps);
     text-transform: uppercase;
     color: var(--ink-muted);
   }
 
   .hero__example {
-    margin: 1.15rem 0 0;
+    margin: var(--s5) 0 0;
     font-family: var(--mono);
-    font-size: 0.76rem;
-    letter-spacing: 0.03em;
-    color: var(--ink-faint);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--ls-caps);
+    color: var(--ink-muted);
     opacity: 0;
     animation: fade-up 0.8s 0.55s var(--ease-out) forwards;
   }
@@ -261,14 +261,14 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
     z-index: 3;
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    padding: 0.6rem 0.85rem;
+    gap: var(--s2);
+    padding: var(--s2) var(--s3);
     background: #fff;
     border: 1px solid var(--ink);
     box-shadow: var(--shadow-1);
     font-family: var(--mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.04em;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--ls-caps);
     opacity: 0;
     animation: fade-up 0.8s 0.7s var(--ease-out) forwards;
   }
@@ -280,8 +280,8 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   }
 
   .hero__chip-label {
-    font-size: 0.66rem;
-    letter-spacing: 0.1em;
+    font-size: var(--fs-2xs);
+    letter-spacing: var(--ls-caps);
     text-transform: uppercase;
     color: var(--ink-muted);
   }
@@ -380,9 +380,9 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   @media (max-width: 900px) {
     .hero__grid {
       grid-template-columns: minmax(0, 1fr);
-      gap: 0.75rem;
+      gap: var(--s3);
       padding-top: 5.75rem;
-      padding-bottom: 2rem;
+      padding-bottom: var(--s7);
     }
 
     .hero__copy h1 {
@@ -390,15 +390,15 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
     }
 
     .hero__sub {
-      margin-top: 1.15rem;
+      margin-top: var(--s5);
     }
 
     .hero__ctas {
-      margin-top: 1.5rem;
+      margin-top: var(--s6);
     }
 
     .hero__rails {
-      margin-top: 1.25rem;
+      margin-top: var(--s5);
     }
 
     .hero__visual {

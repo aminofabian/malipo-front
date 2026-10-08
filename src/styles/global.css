@@ -1,27 +1,76 @@
 /* KioskPay — sharp editorial. Kenya-kinetic, professional, no rounded corners. */
 :root {
+  /* --- brand -------------------------------------------------------------- */
   --bg: #bfc3c7;
   --bg-soft: #e3e6e9;
   --surface: #f7f8f8;
   --ink: #0a0a0a;
   --ink-muted: #3a3a3a;
-  --ink-faint: #6b6b6b;
+  --ink-faint: #4f5459;
   --yellow: #fef27f;
   --yellow-deep: #f5e86a;
   --mpesa: #0f6b68;
+
+  /* --- lines -------------------------------------------------------------- */
   --line: rgba(10, 10, 10, 0.12);
   --hair: rgba(10, 10, 10, 0.16);
+
+  /* --- radius (sharp by design) ------------------------------------------- */
   --radius-btn: 0px;
   --radius-media: 0px;
+
+  /* --- type scale --------------------------------------------------------- */
+  --fs-2xs: 0.6875rem; /* 11 */
+  --fs-xs: 0.75rem; /* 12 */
+  --fs-sm: 0.875rem; /* 14 */
+  --fs-md: 0.9375rem; /* 15 */
+  --fs-lg: 1.0625rem; /* 17 */
+  --fs-xl: 1.375rem; /* 22 */
+  --fs-2xl: 1.75rem; /* 28 */
+  --fs-3xl: 2.125rem; /* 34 */
+
+  --lh-tight: 1.15;
+  --lh-base: 1.5;
+  --lh-loose: 1.65;
+
+  --ls-tight: -0.02em;
+  --ls-display: -0.04em;
+  --ls-caps: 0.08em;
+  --ls-kicker: 0.18em;
+
+  /* --- spacing scale ------------------------------------------------------ */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.25rem;
+  --s6: 1.5rem;
+  --s7: 2rem;
+  --s8: 2.5rem;
+  --s9: 3rem;
+
+  /* --- controls ----------------------------------------------------------- */
+  --control-h: 44px;
+  --control-pad: 1.2rem;
+
+  /* --- layout ------------------------------------------------------------- */
   --nav-h: 72px;
   --max: 1180px;
+
   --font: "Sora Variable", "Sora", "Avenir Next", "Segoe UI", sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* --- focus -------------------------------------------------------------- */
+  --ring: 0 0 0 3px rgba(10, 10, 10, 0.28);
+
+  /* --- motion ------------------------------------------------------------- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-fast: 180ms;
   --dur: 520ms;
   --dur-slow: 900ms;
+
+  /* --- elevation ---------------------------------------------------------- */
   --shadow-1: 0 1px 0 rgba(10, 10, 10, 0.05), 0 20px 44px -30px rgba(10, 10, 10, 0.5);
   --shadow-2: 0 30px 64px -32px rgba(10, 10, 10, 0.55);
 }
@@ -58,6 +107,7 @@ body {
     linear-gradient(90deg, rgba(10, 10, 10, 0.028) 1px, transparent 1px);
   background-size: 38px 38px;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
@@ -77,6 +127,12 @@ button {
   cursor: pointer;
 }
 
+/* Keep inline emphasis on the same weight the headings use. */
+strong,
+b {
+  font-weight: 600;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -94,16 +150,19 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 0.55rem 1.2rem;
+  gap: 0.5rem;
+  min-height: var(--control-h);
+  padding: 0 var(--control-pad);
   border: 1px solid transparent;
-  border-radius: 0;
+  border-radius: var(--radius-btn);
   font: inherit;
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
   font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.5;
+  letter-spacing: var(--ls-tight);
+  line-height: 1;
   white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
   transition:
     transform var(--dur-fast) var(--ease-out),
     background var(--dur-fast) ease,
@@ -120,6 +179,20 @@ button {
   transform: translateY(0);
 }
 
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn svg {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+}
+
 .btn-ghost {
   background: transparent;
   border-color: var(--ink);
@@ -128,6 +201,7 @@ button {
 
 .btn-ghost:hover {
   background: rgba(10, 10, 10, 0.06);
+  color: var(--ink);
 }
 
 .btn-fill {
@@ -138,7 +212,13 @@ button {
 
 .btn-fill:hover {
   background: var(--yellow-deep);
-  box-shadow: 0 12px 26px -14px rgba(10, 10, 10, 0.5);
+  color: var(--ink);
+  box-shadow: 0 14px 28px -16px rgba(10, 10, 10, 0.55);
+}
+
+.btn-fill:active,
+.btn-dark:active {
+  box-shadow: inset 0 2px 5px rgba(10, 10, 10, 0.18);
 }
 
 .btn-dark {
@@ -149,6 +229,18 @@ button {
 
 .btn-dark:hover {
   background: #1c1c1c;
+  color: #fff;
+  box-shadow: 0 14px 28px -16px rgba(10, 10, 10, 0.6);
+}
+
+.btn-dark:focus-visible {
+  outline-color: var(--yellow);
+}
+
+.btn-sm {
+  min-height: 36px;
+  padding: 0 0.9rem;
+  font-size: var(--fs-xs);
 }
 
 .wordmark {
@@ -168,7 +260,7 @@ button {
   font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: var(--ls-kicker);
   text-transform: uppercase;
   color: var(--ink-muted);
 }

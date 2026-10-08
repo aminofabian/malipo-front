@@ -194,18 +194,18 @@ const pluginVersion = "0.1.1";
 
   .guide__kicker {
     display: inline-block;
-    margin-bottom: 0.85rem;
-    font-size: 0.72rem;
+    margin-bottom: var(--s3);
+    font-size: var(--fs-xs);
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: var(--ls-kicker);
     text-transform: uppercase;
     color: var(--mpesa);
   }
 
   .guide h1 {
-    margin: 0 0 0.9rem;
+    margin: 0 0 var(--s4);
     font-size: clamp(2.1rem, 4.8vw, 3.1rem);
-    letter-spacing: -0.04em;
+    letter-spacing: var(--ls-display);
     line-height: 1.05;
   }
 
@@ -213,29 +213,29 @@ const pluginVersion = "0.1.1";
     margin: 0;
     max-width: 46ch;
     color: var(--ink-muted);
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: var(--fs-lg);
+    line-height: var(--lh-loose);
   }
 
   .guide__ctas {
-    margin-top: 1.6rem;
+    margin-top: var(--s6);
   }
 
   .need {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 1.35rem 0 0;
+    gap: var(--s2);
+    margin: var(--s5) 0 0;
     padding: 0;
   }
 
   .need li {
-    padding: 0.35rem 0.75rem;
+    padding: var(--s1) var(--s3);
     border-radius: 0;
     background: rgba(255, 255, 255, 0.75);
     border: 1px solid rgba(10, 10, 10, 0.08);
-    font-size: 0.82rem;
+    font-size: var(--fs-sm);
     font-weight: 500;
   }
 
@@ -245,25 +245,25 @@ const pluginVersion = "0.1.1";
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 1rem;
+    gap: var(--s4);
     max-width: 46rem;
   }
 
   .steps > li {
     counter-increment: step;
     position: relative;
-    padding: 1.6rem 1.6rem 1.6rem 4.5rem;
+    padding: var(--s6) var(--s6) var(--s6) 4.5rem;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 0;
-    box-shadow: 0 22px 50px -40px rgba(10, 10, 10, 0.4);
+    box-shadow: var(--shadow-1);
   }
 
   .steps > li::before {
     content: counter(step);
     position: absolute;
-    left: 1.5rem;
-    top: 1.6rem;
+    left: var(--s6);
+    top: var(--s6);
     width: 2.1rem;
     height: 2.1rem;
     display: grid;
@@ -272,20 +272,20 @@ const pluginVersion = "0.1.1";
     background: var(--yellow);
     color: var(--ink);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: var(--fs-md);
     box-shadow: 0 0 0 2px var(--ink);
   }
 
   .steps h2 {
-    margin: 0 0 0.6rem;
+    margin: 0 0 var(--s2);
     font-size: 1.3rem;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-tight);
   }
 
   .steps p {
     margin: 0;
     color: var(--ink-muted);
-    line-height: 1.6;
+    line-height: var(--lh-loose);
     max-width: 52ch;
   }
 
@@ -294,7 +294,7 @@ const pluginVersion = "0.1.1";
   }
 
   .done {
-    margin-top: 1rem !important;
+    margin-top: var(--s4) !important;
     font-weight: 600;
     color: var(--ink) !important;
   }
@@ -303,9 +303,9 @@ const pluginVersion = "0.1.1";
   .dl {
     display: flex;
     align-items: center;
-    gap: 0.9rem;
-    margin: 1.1rem 0 0;
-    padding: 0.9rem 1rem;
+    gap: var(--s4);
+    margin: var(--s4) 0 0;
+    padding: var(--s4);
     border: 1px solid var(--line);
     border-radius: 0;
     background: var(--surface);
@@ -320,40 +320,40 @@ const pluginVersion = "0.1.1";
     border: 1px solid var(--line);
     border-radius: 0;
     background: var(--bg-soft);
-    font-size: 0.62rem;
+    font-size: var(--fs-2xs);
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--ls-caps);
     color: var(--ink-faint);
   }
 
   .dl__name {
     display: block;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.85rem;
+    font-size: var(--fs-sm);
   }
 
   .dl__meta {
     display: block;
-    margin-top: 0.15rem;
-    font-size: 0.78rem;
+    margin-top: var(--s1);
+    font-size: var(--fs-xs);
     color: var(--ink-faint);
   }
 
   .wpmock {
-    margin: 1.1rem 0 0;
+    margin: var(--s4) 0 0;
     border: 1px solid var(--line);
     border-radius: 0;
     overflow: hidden;
     background: #fff;
-    box-shadow: 0 18px 44px -34px rgba(10, 10, 10, 0.5);
-    font-size: 0.82rem;
+    box-shadow: var(--shadow-1);
+    font-size: var(--fs-sm);
   }
 
   .wpmock__bar {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.6rem 0.8rem;
+    gap: var(--s2);
+    padding: var(--s2) var(--s3);
     background: #f0f0f1;
     border-bottom: 1px solid var(--line);
   }
@@ -368,7 +368,7 @@ const pluginVersion = "0.1.1";
   .wpmock__bar em {
     margin-left: auto;
     font-style: normal;
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     color: var(--ink-faint);
   }
 
@@ -380,18 +380,18 @@ const pluginVersion = "0.1.1";
 
   .wpmock__side {
     display: grid;
-    gap: 0.15rem;
+    gap: var(--s1);
     align-content: start;
-    padding: 0.6rem 0.5rem;
+    padding: var(--s2);
     background: #f6f7f7;
     border-right: 1px solid var(--line);
   }
 
   .wpmock__side span {
-    padding: 0.35rem 0.55rem;
+    padding: var(--s1) var(--s2);
     border-radius: 0;
     color: var(--ink-muted);
-    font-size: 0.78rem;
+    font-size: var(--fs-xs);
   }
 
   .wpmock__side .on {
@@ -401,56 +401,56 @@ const pluginVersion = "0.1.1";
   }
 
   .wpmock__main {
-    padding: 0.85rem 0.95rem;
+    padding: var(--s3) var(--s4);
   }
 
   .wpmock__title {
-    margin-bottom: 0.65rem;
+    margin-bottom: var(--s3);
     font-weight: 600;
   }
 
   .wpmock__btn,
   .wpmock__save {
     display: inline-block;
-    padding: 0.38rem 0.75rem;
+    padding: var(--s2) var(--s3);
     border-radius: 0;
     background: #2271b1;
     color: #fff;
-    font-size: 0.78rem;
+    font-size: var(--fs-xs);
     font-weight: 500;
   }
 
   .wpmock__file {
-    margin-top: 0.7rem;
-    padding: 0.45rem 0.6rem;
+    margin-top: var(--s3);
+    padding: var(--s2);
     border: 1px dashed rgba(10, 10, 10, 0.2);
     border-radius: 0;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     color: var(--ink-muted);
   }
 
   .wpmock__form {
     display: grid;
-    gap: 0.75rem;
-    padding: 0.95rem 1.05rem 1.1rem;
+    gap: var(--s3);
+    padding: var(--s4);
   }
 
   .wpmock__form label {
     display: grid;
-    gap: 0.3rem;
-    font-size: 0.78rem;
+    gap: var(--s1);
+    font-size: var(--fs-xs);
     color: var(--ink-muted);
   }
 
   .wpmock__input {
-    padding: 0.5rem 0.6rem;
+    padding: var(--s2);
     border: 1px solid var(--line);
     border-radius: 0;
     background: #fff;
     color: var(--ink);
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
   }
 
   .wpmock__save {
@@ -463,18 +463,18 @@ const pluginVersion = "0.1.1";
   }
 
   .ways h2 {
-    margin: 0 0 0.5rem;
+    margin: 0 0 var(--s2);
     font-size: clamp(1.7rem, 3.4vw, 2.2rem);
-    letter-spacing: -0.03em;
+    letter-spacing: var(--ls-display);
   }
 
   .ways__lede {
-    margin: 0 0 1.5rem;
+    margin: 0 0 var(--s6);
     color: var(--ink-muted);
   }
 
   .ways__fees {
-    margin: 1.5rem 0 0;
+    margin: var(--s6) 0 0;
     color: var(--ink-muted);
   }
 
@@ -484,43 +484,48 @@ const pluginVersion = "0.1.1";
     text-underline-offset: 0.2em;
   }
 
+  .ways__fees a:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+
   .ways__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
+    gap: var(--s4);
   }
 
   .way {
-    padding: 1.4rem 1.5rem;
+    padding: var(--s6);
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 0;
-    box-shadow: 0 22px 50px -40px rgba(10, 10, 10, 0.4);
+    box-shadow: var(--shadow-1);
   }
 
   .way__tag {
     display: inline-block;
-    margin-bottom: 0.75rem;
-    padding: 0.25rem 0.6rem;
+    margin-bottom: var(--s3);
+    padding: var(--s1) var(--s2);
     border-radius: 0;
     background: rgba(15, 107, 104, 0.1);
     color: var(--mpesa);
-    font-size: 0.68rem;
+    font-size: var(--fs-2xs);
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: var(--ls-caps);
     text-transform: uppercase;
   }
 
   .way h3 {
-    margin: 0 0 0.5rem;
+    margin: 0 0 var(--s2);
     font-size: 1.15rem;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-tight);
   }
 
   .way p {
     margin: 0;
     color: var(--ink-muted);
-    line-height: 1.6;
+    line-height: var(--lh-loose);
   }
 
   .way strong {
@@ -528,37 +533,37 @@ const pluginVersion = "0.1.1";
   }
 
   .code {
-    margin: 1rem 0 0;
-    padding: 0.85rem 1rem;
+    margin: var(--s4) 0 0;
+    padding: var(--s4);
     border-radius: 0;
     background: #111;
     color: var(--yellow);
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.85rem;
+    font-size: var(--fs-sm);
     overflow-x: auto;
   }
 
   /* --- test callout --- */
   .test {
-    margin-top: 1rem;
-    padding: 1.4rem 1.6rem;
+    margin-top: var(--s4);
+    padding: var(--s6);
     border-radius: 0;
     background: color-mix(in srgb, var(--yellow) 45%, #fff);
     border: 1px solid rgba(254, 242, 127, 0.9);
-    box-shadow: 0 22px 50px -40px rgba(10, 10, 10, 0.4);
+    box-shadow: var(--shadow-1);
   }
 
   .test h3 {
-    margin: 0 0 0.4rem;
+    margin: 0 0 var(--s2);
     font-size: 1.2rem;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-tight);
   }
 
   .test p {
     margin: 0;
     max-width: 62ch;
     color: var(--ink-muted);
-    line-height: 1.6;
+    line-height: var(--lh-loose);
   }
 
   .test strong {
@@ -572,27 +577,37 @@ const pluginVersion = "0.1.1";
   }
 
   .help h2 {
-    margin: 0 0 1rem;
+    margin: 0 0 var(--s4);
     font-size: 1.5rem;
-    letter-spacing: -0.03em;
+    letter-spacing: var(--ls-tight);
   }
 
   .help__list {
     display: grid;
-    gap: 0.2rem;
+    gap: var(--s1);
   }
 
   details {
     border-bottom: 1px solid var(--line);
-    padding: 0.2rem 0;
+    padding: var(--s1) 0;
   }
 
   summary {
     list-style: none;
     cursor: pointer;
-    padding: 1rem 2.25rem 1rem 0;
+    padding: var(--s4) 2.25rem var(--s4) 0;
     font-weight: 600;
     position: relative;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  summary:hover {
+    color: var(--mpesa);
+  }
+
+  summary:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
   }
 
   summary::-webkit-details-marker {
@@ -617,14 +632,14 @@ const pluginVersion = "0.1.1";
   }
 
   details p {
-    margin: 0 0 1.1rem;
+    margin: 0 0 var(--s4);
     max-width: 58ch;
     color: var(--ink-muted);
-    line-height: 1.65;
+    line-height: var(--lh-loose);
   }
 
   .help__close {
-    margin: 1.5rem 0 0;
+    margin: var(--s6) 0 0;
     color: var(--ink-muted);
   }
 
@@ -634,10 +649,15 @@ const pluginVersion = "0.1.1";
     text-underline-offset: 0.2em;
   }
 
+  .help__close a:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+
   .guide__end {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: var(--s3);
     margin-top: clamp(2.5rem, 6vw, 4rem);
   }
 
@@ -649,15 +669,15 @@ const pluginVersion = "0.1.1";
 
   @media (max-width: 560px) {
     .steps > li {
-      padding: 1.4rem 1.2rem 1.4rem 3.9rem;
+      padding: var(--s6) var(--s5) var(--s6) 3.9rem;
     }
 
     .steps > li::before {
-      left: 1.15rem;
-      top: 1.4rem;
+      left: var(--s5);
+      top: var(--s6);
       width: 1.9rem;
       height: 1.9rem;
-      font-size: 0.92rem;
+      font-size: var(--fs-md);
     }
 
     .wpmock__body {

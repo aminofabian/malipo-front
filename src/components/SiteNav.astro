@@ -34,7 +34,7 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
     position: absolute;
     inset: 0 0 auto;
     z-index: 20;
-    padding-top: 0.85rem;
+    padding-top: var(--s3);
   }
 
   .site-nav__bar {
@@ -42,7 +42,7 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
     align-items: center;
     justify-content: space-between;
     min-height: 56px;
-    gap: 1rem;
+    gap: var(--s4);
   }
 
   .site-nav__brand {
@@ -53,13 +53,13 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   .site-nav__actions {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: var(--s3);
   }
 
   .site-nav__menu {
-    width: 44px;
-    height: 44px;
-    margin-left: 0.15rem;
+    width: var(--control-h);
+    height: var(--control-h);
+    margin-left: var(--s1);
     display: inline-grid;
     place-content: center;
     gap: 5px;
@@ -71,6 +71,10 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
 
   .site-nav__menu:hover {
     transform: scale(1.05);
+  }
+
+  .site-nav__menu:active {
+    transform: scale(0.96);
   }
 
   .site-nav__menu span {
@@ -96,12 +100,12 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
 
   .site-menu {
     position: absolute;
-    top: calc(56px + 1.1rem);
+    top: calc(56px + var(--s4));
     right: max(1.25rem, calc((100% - var(--max)) / 2));
     display: grid;
-    gap: 0.35rem;
+    gap: var(--s1);
     min-width: 220px;
-    padding: 1rem;
+    padding: var(--s4);
     background: #fff;
     border: 1px solid var(--ink);
     border-radius: 0;
@@ -126,13 +130,24 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   }
 
   .site-menu a {
-    padding: 0.65rem 0.75rem;
+    padding: var(--s3);
     border-radius: 0;
     font-weight: 600;
+    transition: background var(--dur-fast) var(--ease-out);
   }
 
   .site-menu a:hover {
     background: var(--yellow);
+  }
+
+  .site-menu a:active {
+    background: var(--yellow-deep);
+  }
+
+  .site-menu a:focus-visible {
+    background: var(--yellow);
+    outline: 2px solid var(--ink);
+    outline-offset: -2px;
   }
 
   @media (max-width: 720px) {

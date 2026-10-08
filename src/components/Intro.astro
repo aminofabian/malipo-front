@@ -66,10 +66,10 @@ import { CONNECT_SIGNUP } from "../lib/urls";
   }
 
   .intro h2 {
-    margin: 0 0 1.15rem;
+    margin: 0 0 var(--s5);
     font-size: clamp(2.15rem, 4.8vw, 3.55rem);
     font-weight: 600;
-    letter-spacing: -0.04em;
+    letter-spacing: var(--ls-display);
     line-height: 1.05;
   }
 
@@ -77,31 +77,31 @@ import { CONNECT_SIGNUP } from "../lib/urls";
     margin: 0;
     max-width: 52ch;
     font-size: clamp(1.05rem, 1.5vw, 1.18rem);
-    line-height: 1.65;
+    line-height: var(--lh-loose);
     color: var(--ink-muted);
   }
 
   .intro__links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem 1.5rem;
-    margin-top: 1.75rem;
+    gap: var(--s3) var(--s6);
+    margin-top: var(--s7);
   }
 
   .intro__links a {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
+    gap: var(--s2);
     font-weight: 600;
-    padding-bottom: 0.2rem;
+    padding-bottom: var(--s1);
     border-bottom: 1.5px solid transparent;
-    transition: border-color var(--dur-fast) ease, transform var(--dur-fast) var(--ease-out);
+    transition: border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
   }
 
   .intro__links a::before {
     content: "";
-    width: 0.55rem;
-    height: 0.55rem;
+    width: var(--s2);
+    height: var(--s2);
     border-radius: 0;
     background: var(--yellow);
     box-shadow: 0 0 0 2px var(--ink);
@@ -111,6 +111,16 @@ import { CONNECT_SIGNUP } from "../lib/urls";
   .intro__links a:hover {
     border-bottom-color: var(--ink);
     transform: translateX(2px);
+  }
+
+  .intro__links a:active {
+    transform: translateX(1px);
+  }
+
+  .intro__links a:focus-visible {
+    border-bottom-color: var(--ink);
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
   }
 
   .intro__media {
@@ -135,26 +145,26 @@ import { CONNECT_SIGNUP } from "../lib/urls";
 
   .intro__media figcaption {
     position: absolute;
-    left: 1rem;
-    bottom: 1rem;
+    left: var(--s4);
+    bottom: var(--s4);
     display: grid;
-    gap: 0.15rem;
-    padding: 0.85rem 1.05rem;
+    gap: var(--s1);
+    padding: var(--s3) var(--s4);
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(10px);
     border-radius: 0;
-    border: 1px solid rgba(10, 10, 10, 0.12);
+    border: 1px solid var(--line);
     max-width: min(100% - 2rem, 18rem);
   }
 
   .intro__media strong {
-    font-size: 0.95rem;
-    letter-spacing: -0.02em;
+    font-size: var(--fs-md);
+    letter-spacing: var(--ls-tight);
   }
 
   .intro__media span {
     color: var(--ink-muted);
-    font-size: 0.85rem;
+    font-size: var(--fs-sm);
   }
 
   @media (prefers-reduced-motion: reduce) {

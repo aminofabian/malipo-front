@@ -57,9 +57,9 @@ const faqs = [
   }
 
   .faq__lead h2 {
-    margin: 0 0 0.75rem;
+    margin: 0 0 var(--s3);
     font-size: clamp(2.1rem, 4.4vw, 3.2rem);
-    letter-spacing: -0.04em;
+    letter-spacing: var(--ls-display);
   }
 
   .faq__lead .kicker {
@@ -69,29 +69,38 @@ const faqs = [
   .faq__lead p {
     margin: 0;
     color: var(--ink-muted);
-    line-height: 1.55;
+    line-height: var(--lh-base);
     max-width: 28ch;
   }
 
   .faq__list {
     display: grid;
-    gap: 0.2rem;
+    gap: var(--s1);
   }
 
   details {
     border-bottom: 1px solid var(--line);
-    padding: 0.2rem 0;
+    padding: var(--s1) 0;
   }
 
   summary {
     list-style: none;
     cursor: pointer;
-    padding: 1.15rem 2.25rem 1.15rem 0;
+    padding: var(--s5) 2.25rem var(--s5) 0;
     font-weight: 600;
-    font-size: 1.05rem;
-    letter-spacing: -0.015em;
+    font-size: var(--fs-lg);
+    letter-spacing: var(--ls-tight);
     position: relative;
-    transition: color var(--dur-fast) ease;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  summary:hover {
+    color: var(--mpesa);
+  }
+
+  summary:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
   }
 
   summary::-webkit-details-marker {
@@ -120,10 +129,10 @@ const faqs = [
   }
 
   details p {
-    margin: 0 0 1.25rem;
+    margin: 0 0 var(--s5);
     max-width: 58ch;
     color: var(--ink-muted);
-    line-height: 1.65;
+    line-height: var(--lh-loose);
     animation: faq-open 0.35s var(--ease-out);
   }
 

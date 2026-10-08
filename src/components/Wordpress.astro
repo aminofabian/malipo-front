@@ -66,9 +66,9 @@
   }
 
   .wp h2 {
-    margin: 0 0 1rem;
+    margin: 0 0 var(--s4);
     font-size: clamp(2.1rem, 4.4vw, 3.2rem);
-    letter-spacing: -0.04em;
+    letter-spacing: var(--ls-display);
     line-height: 1.06;
   }
 
@@ -76,22 +76,22 @@
     margin: 0;
     max-width: 46ch;
     color: var(--ink-muted);
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: var(--fs-lg);
+    line-height: var(--lh-loose);
   }
 
   .wp__list {
     list-style: none;
-    margin: 1.5rem 0 0;
+    margin: var(--s6) 0 0;
     padding: 0;
     display: grid;
-    gap: 0.65rem;
+    gap: var(--s3);
   }
 
   .wp__list li {
     display: flex;
     align-items: baseline;
-    gap: 0.65rem;
+    gap: var(--s3);
     color: var(--ink);
     font-weight: 500;
   }
@@ -99,8 +99,8 @@
   .wp__list li::before {
     content: "";
     flex: 0 0 auto;
-    width: 0.55rem;
-    height: 0.55rem;
+    width: var(--s2);
+    height: var(--s2);
     border-radius: 0;
     background: var(--yellow);
     box-shadow: 0 0 0 2px var(--ink);
@@ -118,13 +118,13 @@
   .wp__ctas {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
-    margin-top: 1.75rem;
+    gap: var(--s3);
+    margin-top: var(--s7);
   }
 
   .wp__meta {
-    margin: 1rem 0 0;
-    font-size: 0.82rem;
+    margin: var(--s4) 0 0;
+    font-size: var(--fs-sm);
     color: var(--ink-faint);
   }
 
@@ -134,16 +134,16 @@
       radial-gradient(ellipse at 80% 0%, rgba(254, 242, 127, 0.14), transparent 55%),
       #111;
     color: #fff;
-    box-shadow: 0 30px 60px -30px rgba(10, 10, 10, 0.55);
+    box-shadow: var(--shadow-2);
     overflow: hidden;
-    padding-bottom: 1.25rem;
+    padding-bottom: var(--s5);
   }
 
   .wp__bar {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.85rem 1rem;
+    gap: var(--s2);
+    padding: var(--s3) var(--s4);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -160,17 +160,17 @@
 
   .wp__file {
     margin-left: auto;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--ls-caps);
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.5);
   }
 
   .wp__code {
     margin: 0;
-    padding: 1.5rem 1.25rem 1.25rem;
+    padding: var(--s6) var(--s5) var(--s5);
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.92rem;
+    font-size: var(--fs-md);
     line-height: 1.6;
     color: var(--yellow);
     overflow-x: auto;
@@ -178,16 +178,16 @@
 
   .wp__foot {
     margin: 0;
-    padding: 0 1.25rem;
+    padding: 0 var(--s5);
     color: rgba(255, 255, 255, 0.6);
-    font-size: 0.88rem;
-    line-height: 1.5;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-base);
   }
 
   @media (max-width: 860px) {
     .wp__grid {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: var(--s7);
     }
   }
 </style>

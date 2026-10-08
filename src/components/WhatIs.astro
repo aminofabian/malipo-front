@@ -108,17 +108,17 @@ import { CONNECT_SIGNUP } from "../lib/urls";
   }
 
   .what h2 {
-    margin: 0 0 1rem;
+    margin: 0 0 var(--s4);
     font-size: clamp(2.1rem, 4.4vw, 3.2rem);
-    letter-spacing: -0.04em;
+    letter-spacing: var(--ls-display);
     line-height: 1.06;
   }
 
   .what__head p {
     margin: 0;
     max-width: 52ch;
-    font-size: 1.08rem;
-    line-height: 1.65;
+    font-size: var(--fs-lg);
+    line-height: var(--lh-loose);
     color: var(--ink-muted);
   }
 
@@ -128,34 +128,38 @@ import { CONNECT_SIGNUP } from "../lib/urls";
     padding: 0;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.75rem;
+    gap: var(--s3);
   }
 
   .what__rails li {
     display: grid;
-    gap: 0.35rem;
-    padding: 1.15rem 1.1rem 1.25rem;
+    gap: var(--s1);
+    padding: var(--s5) var(--s4) var(--s5);
     border-radius: 0;
     background: var(--bg);
     border: 1px solid transparent;
-    transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast) ease, background var(--dur-fast) ease;
+    transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
   }
 
   .what__rails li:hover {
     transform: translateY(-3px);
     background: #fff;
-    border-color: rgba(10, 10, 10, 0.1);
+    border-color: var(--line);
+  }
+
+  .what__rails li:active {
+    transform: translateY(-1px);
   }
 
   .what__rails strong {
-    font-size: 1.05rem;
-    letter-spacing: -0.02em;
+    font-size: var(--fs-lg);
+    letter-spacing: var(--ls-tight);
   }
 
   .what__rails span {
     color: var(--ink-muted);
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-base);
   }
 
   .stage {
@@ -176,23 +180,32 @@ import { CONNECT_SIGNUP } from "../lib/urls";
   }
 
   .stage__copy h3 {
-    margin: 0 0 0.9rem;
+    margin: 0 0 var(--s4);
     font-size: clamp(1.65rem, 3.1vw, 2.35rem);
-    letter-spacing: -0.035em;
+    letter-spacing: var(--ls-display);
     line-height: 1.12;
   }
 
   .stage__copy p {
-    margin: 0 0 1.25rem;
+    margin: 0 0 var(--s5);
     max-width: 42ch;
     color: var(--ink-muted);
-    line-height: 1.65;
+    line-height: var(--lh-loose);
   }
 
   .stage__link {
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 0.28em;
+  }
+
+  .stage__link:hover {
+    color: var(--mpesa);
+  }
+
+  .stage__link:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
   }
 
   .stage__visual {
@@ -203,7 +216,7 @@ import { CONNECT_SIGNUP } from "../lib/urls";
       var(--bg-soft);
     display: grid;
     place-items: center;
-    padding: 2rem;
+    padding: var(--s7);
     overflow: hidden;
   }
 
@@ -216,7 +229,7 @@ import { CONNECT_SIGNUP } from "../lib/urls";
 
   .till {
     width: min(100%, 280px);
-    padding: 1.5rem 1.4rem 1.35rem;
+    padding: var(--s6) var(--s6) var(--s5);
     border-radius: 0;
     background: #fff;
     border: 1px solid var(--line);
@@ -227,43 +240,43 @@ import { CONNECT_SIGNUP } from "../lib/urls";
 
   .till__badge {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.25rem 0.55rem;
+    top: var(--s4);
+    right: var(--s4);
+    padding: var(--s1) var(--s2);
     border-radius: 0;
     background: rgba(15, 107, 104, 0.1);
     color: var(--mpesa);
-    font-size: 0.68rem;
+    font-size: var(--fs-2xs);
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: var(--ls-caps);
     text-transform: uppercase;
   }
 
   .till__label {
     display: block;
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: var(--ls-caps);
     text-transform: uppercase;
     color: var(--mpesa);
   }
 
   .till__num {
     display: block;
-    margin: 0.85rem 0 0.35rem;
+    margin: var(--s3) 0 var(--s1);
     font-size: 2.15rem;
-    letter-spacing: -0.03em;
+    letter-spacing: var(--ls-display);
     font-variant-numeric: tabular-nums;
   }
 
   .till em {
     font-style: normal;
     color: #6b6b6b;
-    font-size: 0.92rem;
+    font-size: var(--fs-md);
   }
 
   .till__bar {
-    margin-top: 1.1rem;
+    margin-top: var(--s4);
     height: 4px;
     border-radius: 0;
     background: rgba(10, 10, 10, 0.08);
@@ -283,15 +296,15 @@ import { CONNECT_SIGNUP } from "../lib/urls";
     border-radius: 0;
     background: #1a1a1a;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 0.65rem 0.65rem 1.1rem;
-    box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.7);
+    padding: var(--s3) var(--s3) var(--s4);
+    box-shadow: var(--shadow-2);
     animation: phone-rise 1s var(--ease-out) both;
   }
 
   .phone__notch {
     width: 42%;
     height: 10px;
-    margin: 0.2rem auto 0.85rem;
+    margin: var(--s1) auto var(--s3);
     border-radius: 0;
     background: #0d0d0d;
   }
@@ -300,40 +313,40 @@ import { CONNECT_SIGNUP } from "../lib/urls";
     display: grid;
     justify-items: center;
     text-align: center;
-    gap: 0.35rem;
-    padding: 1.1rem 0.75rem 1.25rem;
+    gap: var(--s1);
+    padding: var(--s4) var(--s3) var(--s5);
     border-radius: 0;
     background: #0f0f0f;
   }
 
   .phone__from {
-    font-size: 0.7rem;
+    font-size: var(--fs-2xs);
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: var(--ls-kicker);
     color: var(--yellow);
   }
 
   .phone__ask {
-    margin: 0.35rem 0 0;
-    font-size: 0.85rem;
+    margin: var(--s1) 0 0;
+    font-size: var(--fs-sm);
     color: rgba(255, 255, 255, 0.55);
   }
 
   .phone__amt {
     font-size: 1.55rem;
-    letter-spacing: -0.03em;
-    margin: 0.2rem 0;
+    letter-spacing: var(--ls-tight);
+    margin: var(--s1) 0;
   }
 
   .phone__to {
-    font-size: 0.78rem;
+    font-size: var(--fs-xs);
     color: rgba(255, 255, 255, 0.5);
   }
 
   .phone__dots {
     display: flex;
-    gap: 0.45rem;
-    margin-top: 0.85rem;
+    gap: var(--s2);
+    margin-top: var(--s3);
   }
 
   .phone__dots i {
@@ -377,17 +390,17 @@ import { CONNECT_SIGNUP } from "../lib/urls";
 
   .closer h3 {
     position: relative;
-    margin: 0 0 0.9rem;
+    margin: 0 0 var(--s4);
     font-size: clamp(1.6rem, 3vw, 2.2rem);
-    letter-spacing: -0.035em;
+    letter-spacing: var(--ls-display);
     line-height: 1.12;
   }
 
   .closer p {
     position: relative;
-    margin: 0 0 1rem;
+    margin: 0 0 var(--s4);
     color: var(--ink-muted);
-    line-height: 1.65;
+    line-height: var(--lh-loose);
     max-width: 48ch;
   }
 
@@ -398,7 +411,7 @@ import { CONNECT_SIGNUP } from "../lib/urls";
 
   .closer .btn {
     position: relative;
-    margin-top: 0.5rem;
+    margin-top: var(--s2);
   }
 
   @keyframes till-pop {
