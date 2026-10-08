@@ -1,3 +1,6 @@
+---
+import { PLUGIN_VERSION, PLUGIN_ZIP } from "../lib/urls";
+---
 <section class="wp" id="wordpress" data-index="03">
   <div class="shell wp__grid">
     <div class="wp__copy reveal">
@@ -15,11 +18,11 @@
       </ul>
 
       <div class="wp__ctas">
-        <a class="btn btn-fill" href="/malipo-payments-0.1.1.zip" download>Download plugin</a>
+        <a class="btn btn-fill" href={PLUGIN_ZIP} download>Download plugin</a>
         <a class="btn btn-ghost" href="/wordpress">Setup guide</a>
       </div>
 
-      <p class="wp__meta">Free · v0.1.1 · WordPress 6.0+ · About 5 minutes</p>
+      <p class="wp__meta">Free · v{PLUGIN_VERSION} · WordPress 6.0+ · About 5 minutes</p>
     </div>
 
     <div class="wp__card reveal" aria-hidden="true">

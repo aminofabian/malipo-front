@@ -2,8 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteNav from "../components/SiteNav.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import { PLUGIN_VERSION, PLUGIN_ZIP } from "../lib/urls";
 
-const pluginVersion = "0.1.1";
+const pluginVersion = PLUGIN_VERSION;
 ---
 
 <BaseLayout
@@ -21,7 +22,7 @@ const pluginVersion = "0.1.1";
           Three simple steps. No coding. Works with WooCommerce, or on any page you like.
         </p>
         <div class="guide__ctas">
-          <a class="btn btn-fill" href="/malipo-payments-0.1.1.zip" download>Download the plugin</a>
+          <a class="btn btn-fill" href={PLUGIN_ZIP} download>Download the plugin</a>
         </div>
         <ul class="need">
           <li>Your WordPress login</li>
@@ -170,7 +171,7 @@ const pluginVersion = "0.1.1";
       </section>
 
       <div class="guide__end">
-        <a class="btn btn-fill" href="/malipo-payments-0.1.1.zip" download>Download the plugin</a>
+        <a class="btn btn-fill" href={PLUGIN_ZIP} download>Download the plugin</a>
         <a class="btn btn-ghost" href="/">Back to home</a>
       </div>
     </div>
