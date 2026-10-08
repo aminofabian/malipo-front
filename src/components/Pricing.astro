@@ -32,7 +32,7 @@ const columns = [bands.slice(0, half), bands.slice(half)];
 
 // Live fee schedule: the page ships with the schedule baked in as a fallback,
 // then refreshes it from the service so super-admin edits show up here too.
-// Set PUBLIC_MALIPO_API at build time for production (e.g. https://api.kiosk.ke).
+// Set PUBLIC_MALIPO_API at build time for production (e.g. https://backend.kioskpay.co.ke).
 const api = import.meta.env.PUBLIC_MALIPO_API || (import.meta.env.DEV ? "http://127.0.0.1:4000" : "");
 ---
 
