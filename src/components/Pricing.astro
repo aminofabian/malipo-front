@@ -55,7 +55,7 @@ const api = import.meta.env.PUBLIC_MALIPO_API || (import.meta.env.DEV ? "http://
           <input id="fee-amount" type="number" inputmode="numeric" min="1" max="999999" value="1000" />
         </span>
       </label>
-      <div class="fees__out">
+      <div class="fees__out" aria-live="polite">
         <div>
           <span>You receive</span>
           <strong id="fee-net">KES 985</strong>
@@ -224,7 +224,7 @@ const api = import.meta.env.PUBLIC_MALIPO_API || (import.meta.env.DEV ? "http://
 <style>
   .fees {
     position: relative;
-    background: #fff;
+    background: var(--paper);
     padding: clamp(4.5rem, 9vw, 7rem) 0;
   }
 
@@ -369,6 +369,7 @@ const api = import.meta.env.PUBLIC_MALIPO_API || (import.meta.env.DEV ? "http://
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(1.25rem, 3vw, 2.5rem);
+    overflow-x: auto;
   }
 
   .fees__table {

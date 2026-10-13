@@ -44,7 +44,7 @@ import { PLUGIN_VERSION, PLUGIN_ZIP } from "../lib/urls";
 <style>
   .wp {
     position: relative;
-    background: #fff;
+    background: var(--paper);
     padding: clamp(4.5rem, 9vw, 7rem) 0;
   }
 
@@ -110,14 +110,6 @@ import { PLUGIN_VERSION, PLUGIN_ZIP } from "../lib/urls";
     transform: translateY(-1px);
   }
 
-  .wp__list code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.9em;
-    background: rgba(10, 10, 10, 0.06);
-    padding: 0.1em 0.4em;
-    border-radius: 0;
-  }
-
   .wp__ctas {
     display: flex;
     flex-wrap: wrap;
@@ -135,7 +127,7 @@ import { PLUGIN_VERSION, PLUGIN_ZIP } from "../lib/urls";
     border-radius: var(--radius-media);
     background:
       radial-gradient(ellipse at 80% 0%, rgba(254, 242, 127, 0.14), transparent 55%),
-      #111;
+      var(--ink-panel);
     color: #fff;
     box-shadow: var(--shadow-2);
     overflow: hidden;

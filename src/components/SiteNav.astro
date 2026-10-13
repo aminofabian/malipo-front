@@ -4,7 +4,7 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
 
 <header class="site-nav">
   <div class="site-nav__bar shell">
-    <a class="wordmark site-nav__brand" href="/" aria-label="KioskPay home">Kioskpay</a>
+    <a class="wordmark site-nav__brand" href="/" aria-label="KioskPay home">KioskPay</a>
 
     <div class="site-nav__actions">
       <a class="btn btn-ghost" href={CONNECT_SIGNIN}>Log In</a>
@@ -41,7 +41,7 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 56px;
+    min-height: var(--nav-h);
     gap: var(--s4);
   }
 
@@ -100,13 +100,13 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
 
   .site-menu {
     position: absolute;
-    top: calc(56px + var(--s4));
+    top: calc(var(--nav-h) + var(--s4));
     right: max(1.25rem, calc((100% - var(--max)) / 2));
     display: grid;
     gap: var(--s1);
     min-width: 220px;
     padding: var(--s4);
-    background: #fff;
+    background: var(--paper);
     border: 1px solid var(--ink);
     border-radius: 0;
     box-shadow: var(--shadow-2);
@@ -161,11 +161,26 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   const menuBtn = document.querySelector(".site-nav__menu");
   const menu = document.getElementById("site-menu");
   if (menuBtn instanceof HTMLButtonElement && menu) {
-    menuBtn.addEventListener("click", () => {
-      const open = menu.hasAttribute("hidden");
+    const setOpen = (open) => {
       if (open) menu.removeAttribute("hidden");
       else menu.setAttribute("hidden", "");
       menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    };
+
+    menuBtn.addEventListener("click", () => setOpen(menu.hasAttribute("hidden")));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !menu.hasAttribute("hidden")) {
+        setOpen(false);
+        menuBtn.focus();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (menu.hasAttribute("hidden")) return;
+      const target = event.target;
+      if (target instanceof Node && !menu.contains(target) && !menuBtn.contains(target)) setOpen(false);
     });
   }
 </script>

@@ -13,7 +13,7 @@ const pluginVersion = PLUGIN_VERSION;
 >
   <SiteNav />
 
-  <main class="guide">
+  <main id="main" class="guide">
     <div class="shell">
       <header class="guide__head">
         <span class="guide__kicker">WordPress setup</span>
@@ -124,7 +124,7 @@ const pluginVersion = PLUGIN_VERSION;
 
       <section class="test">
         <div>
-          <h3>Try it with KES 1</h3>
+          <h2>Try it with KES 1</h2>
           <p>
             Before you go live, pay 1 shilling from your own phone. When you enter your PIN, the
             order shows as <strong>paid</strong> and the M-Pesa receipt is saved. If that works,
@@ -182,6 +182,7 @@ const pluginVersion = PLUGIN_VERSION;
 
 <style>
   .guide {
+    --wp-blue: #2271b1;
     background:
       radial-gradient(ellipse at 10% 0%, rgba(254, 242, 127, 0.32), transparent 42%),
       var(--bg);
@@ -200,7 +201,7 @@ const pluginVersion = PLUGIN_VERSION;
     font-weight: 700;
     letter-spacing: var(--ls-kicker);
     text-transform: uppercase;
-    color: var(--mpesa);
+    color: var(--ink-muted);
   }
 
   .guide h1 {
@@ -254,7 +255,7 @@ const pluginVersion = PLUGIN_VERSION;
     counter-increment: step;
     position: relative;
     padding: var(--s6) var(--s6) var(--s6) 4.5rem;
-    background: #fff;
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 0;
     box-shadow: var(--shadow-1);
@@ -345,7 +346,7 @@ const pluginVersion = PLUGIN_VERSION;
     border: 1px solid var(--line);
     border-radius: 0;
     overflow: hidden;
-    background: #fff;
+    background: var(--paper);
     box-shadow: var(--shadow-1);
     font-size: var(--fs-sm);
   }
@@ -396,7 +397,7 @@ const pluginVersion = PLUGIN_VERSION;
   }
 
   .wpmock__side .on {
-    background: #2271b1;
+    background: var(--wp-blue);
     color: #fff;
     font-weight: 600;
   }
@@ -415,7 +416,7 @@ const pluginVersion = PLUGIN_VERSION;
     display: inline-block;
     padding: var(--s2) var(--s3);
     border-radius: 0;
-    background: #2271b1;
+    background: var(--wp-blue);
     color: #fff;
     font-size: var(--fs-xs);
     font-weight: 500;
@@ -448,7 +449,7 @@ const pluginVersion = PLUGIN_VERSION;
     padding: var(--s2);
     border: 1px solid var(--line);
     border-radius: 0;
-    background: #fff;
+    background: var(--paper);
     color: var(--ink);
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: var(--fs-xs);
@@ -498,7 +499,7 @@ const pluginVersion = PLUGIN_VERSION;
 
   .way {
     padding: var(--s6);
-    background: #fff;
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 0;
     box-shadow: var(--shadow-1);
@@ -537,7 +538,7 @@ const pluginVersion = PLUGIN_VERSION;
     margin: var(--s4) 0 0;
     padding: var(--s4);
     border-radius: 0;
-    background: #111;
+    background: var(--ink-panel);
     color: var(--yellow);
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: var(--fs-sm);
@@ -554,7 +555,7 @@ const pluginVersion = PLUGIN_VERSION;
     box-shadow: var(--shadow-1);
   }
 
-  .test h3 {
+  .test h2 {
     margin: 0 0 var(--s2);
     font-size: 1.2rem;
     letter-spacing: var(--ls-tight);

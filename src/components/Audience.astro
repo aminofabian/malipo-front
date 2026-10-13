@@ -31,8 +31,8 @@ const audiences = [
 
     <ol class="audience__list">
       {
-        audiences.map((item, i) => (
-          <li class="reveal" style={`--i: ${i}`}>
+        audiences.map((item) => (
+          <li class="reveal">
             <span class="audience__mark">{item.mark}</span>
             <div>
               <h3>{item.title}</h3>
@@ -104,7 +104,7 @@ const audiences = [
 
   .audience__list li:hover {
     transform: translateX(4px);
-    background: #fff;
+    background: var(--paper);
   }
 
   .audience__list li:active {

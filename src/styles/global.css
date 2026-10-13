@@ -10,6 +10,9 @@
   --yellow: #fef27f;
   --yellow-deep: #f5e86a;
   --mpesa: #0f6b68;
+  --paper: #fff;
+  /* The near-black band behind the rails/footer/device mock. */
+  --ink-panel: #0b0b0b;
 
   /* --- lines -------------------------------------------------------------- */
   --line: rgba(10, 10, 10, 0.12);
@@ -54,7 +57,7 @@
   --control-pad: 1.2rem;
 
   /* --- layout ------------------------------------------------------------- */
-  --nav-h: 72px;
+  --nav-h: 56px;
   --max: 1180px;
 
   --font: "Sora Variable", "Sora", "Avenir Next", "Segoe UI", sans-serif;
@@ -143,6 +146,24 @@ b {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Keyboard users skip the nav on every page. Off-screen until focused. */
+.skip-link {
+  position: absolute;
+  left: var(--s4);
+  top: -6rem;
+  z-index: 100;
+  padding: var(--s3) var(--s4);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition: top var(--dur-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: var(--s4);
 }
 
 /* Sharp buttons. Ghost / fill / dark. */

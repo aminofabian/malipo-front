@@ -15,7 +15,7 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   </div>
 
   <div class="shell site-footer__top">
-    <a class="wordmark" href="/">Kioskpay</a>
+    <a class="wordmark" href="/">KioskPay</a>
     <p class="site-footer__tag">Malipo moves the money. KioskPay is the front door.</p>
   </div>
 
@@ -44,13 +44,13 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
 
   <div class="shell site-footer__base">
     <p>Copyright © {new Date().getFullYear()} Kiosk Technologies Ltd. All rights reserved.</p>
-    <p id="login">Built for Kenyan shops on Kiosk</p>
+    <p>Built for Kenyan shops on Kiosk</p>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    background: #0d0d0d;
+    background: var(--ink-panel);
     color: #f4f4f4;
     padding: clamp(3rem, 7vw, 5rem) 0 2rem;
     position: relative;
@@ -131,11 +131,8 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
     color: #fff;
   }
 
-  .site-footer .btn-fill {
-    color: #111;
-  }
-
-  .site-footer__grid {
+  .site-footer__base {
+    display: flex;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--s7);
@@ -157,6 +154,10 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   }
 
   .site-footer__grid a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding-block: var(--s1);
     font-weight: 500;
     transition: color var(--dur-fast) var(--ease-out);
   }
