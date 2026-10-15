@@ -1,0 +1,543 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteNav from "../../components/SiteNav.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import { EXAMPLE_CODE, MAX_CODE_LENGTH } from "../../lib/barcode-label";
+
+const faqs = [
+  {
+    q: "What barcode is this?",
+    a: "Code 128. It holds letters and numbers, and most shop scanners read it.",
+  },
+  {
+    q: "How do I print it?",
+    a: "Download the SVG and print it on a shelf label or the pack. The file stays sharp at any size.",
+  },
+  {
+    q: "What should I put in it?",
+    a: "Your own product code. Keep one code per item so a scan always finds the same product.",
+  },
+  {
+    q: "Is the code stored?",
+    a: "No. The barcode is drawn in your browser. Nothing is uploaded.",
+  },
+];
+---
+
+<BaseLayout
+  title="Barcode generator | KioskPay"
+  description="Make a Code 128 barcode from a product code and download it as an SVG for a shelf label."
+>
+  <SiteNav />
+  <main id="main" class="tool-page">
+    <div class="shell">
+      <div class="bench">
+        <form id="barcode-form" class="bench__form" novalidate>
+          <h1>Barcode generator</h1>
+          <p class="bench__lede">
+            Type a product code. A Code 128 barcode appears, ready to download and print on a shelf label.
+          </p>
+
+          <div class="bench__field">
+            <label for="barcode-code">Product code or text</label>
+            <input
+              id="barcode-code"
+              name="code"
+              type="text"
+              maxlength={MAX_CODE_LENGTH}
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              enterkeyhint="done"
+              placeholder={EXAMPLE_CODE}
+              aria-describedby="barcode-hint barcode-alert"
+            />
+            <p id="barcode-hint" class="bench__hint">Letters, numbers, and symbols. One code per product.</p>
+            <p id="barcode-alert" class="bench__alert" hidden></p>
+          </div>
+        </form>
+
+        <div class="bench__label">
+          <div class="bench__stage">
+            <svg id="barcode" hidden></svg>
+            <p id="barcode-empty" class="bench__empty">Your barcode shows up here.</p>
+            <button id="barcode-example" class="btn btn-ghost btn-sm" type="button">
+              Try {EXAMPLE_CODE}
+            </button>
+          </div>
+          <p id="barcode-format" class="bench__format" hidden>Code 128</p>
+          <div class="bench__actions">
+            <button id="barcode-download" class="btn btn-fill" type="button" disabled>Download SVG</button>
+            <button id="barcode-copy" class="btn btn-ghost" type="button" disabled>Copy code</button>
+            <button id="barcode-share" class="btn btn-ghost" type="button" disabled>Share</button>
+          </div>
+          <p id="barcode-status" class="bench__status" role="status"></p>
+        </div>
+      </div>
+
+      <section class="tool__after" aria-labelledby="print-heading">
+        <h2 id="print-heading">Print it on a label</h2>
+        <p>
+          Download the SVG, print it, and stick it on the shelf or the pack. A scanner at the till reads the same code you typed.
+        </p>
+
+        <h2 id="questions-heading">Questions</h2>
+        <div class="tool__faqs">
+          {
+            faqs.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<script>
+  import JsBarcode from "jsbarcode";
+  import {
+    assessBarcodeCode,
+    barcodeFileName,
+    canEncodeBarcode,
+    EXAMPLE_CODE,
+    type BarcodeCodeState,
+  } from "../../lib/barcode-label";
+
+  const BAR_MODULE = 2;
+  const BAR_HEIGHT = 100;
+  const QUIET_ZONE = 20;
+  const BAR_FONT_SIZE = 16;
+  const TEXT_GAP = 8;
+  const EMPTY_COPY = "Your barcode shows up here.";
+  const BLOCKED_COPY = "Fix the code to see a barcode.";
+  const LONG_COPY = "This code is long. Shorter codes scan more easily on a shelf label.";
+  const INVALID_COPY = "Use letters, numbers, and symbols from a standard keyboard.";
+  const TOO_LONG_COPY = "Use 80 characters or fewer.";
+
+  const BARCODE_OPTIONS = {
+    format: "CODE128",
+    lineColor: "#0a0a0a",
+    background: "#ffffff",
+    width: BAR_MODULE,
+    height: BAR_HEIGHT,
+    displayValue: true,
+    font: "Sora Variable, Sora, sans-serif",
+    fontSize: BAR_FONT_SIZE,
+    textMargin: TEXT_GAP,
+    margin: QUIET_ZONE,
+  };
+
+  const form = document.querySelector("#barcode-form");
+  const input = document.querySelector("#barcode-code");
+  const alertEl = document.querySelector("#barcode-alert");
+  const svg = document.querySelector("#barcode");
+  const empty = document.querySelector("#barcode-empty");
+  const exampleBtn = document.querySelector("#barcode-example");
+  const formatEl = document.querySelector("#barcode-format");
+  const downloadBtn = document.querySelector("#barcode-download");
+  const copyBtn = document.querySelector("#barcode-copy");
+  const shareBtn = document.querySelector("#barcode-share");
+  const statusEl = document.querySelector("#barcode-status");
+
+  const ready =
+    form instanceof HTMLFormElement &&
+    input instanceof HTMLInputElement &&
+    alertEl instanceof HTMLElement &&
+    svg instanceof SVGSVGElement &&
+    empty instanceof HTMLElement &&
+    exampleBtn instanceof HTMLButtonElement &&
+    formatEl instanceof HTMLElement &&
+    downloadBtn instanceof HTMLButtonElement &&
+    copyBtn instanceof HTMLButtonElement &&
+    shareBtn instanceof HTMLButtonElement &&
+    statusEl instanceof HTMLElement;
+
+  if (ready) {
+    let current = assessBarcodeCode("");
+
+    const showAlert = (tone: "warn" | "error", message: string) => {
+      alertEl.hidden = false;
+      alertEl.dataset.tone = tone;
+      alertEl.textContent = message;
+    };
+
+    const hideAlert = () => {
+      alertEl.hidden = true;
+      alertEl.textContent = "";
+      delete alertEl.dataset.tone;
+    };
+
+    const clearSvg = () => {
+      svg.replaceChildren();
+      svg.setAttribute("hidden", "");
+      svg.removeAttribute("aria-label");
+    };
+
+    const draw = (code: string) => {
+      svg.replaceChildren();
+      JsBarcode(svg, code, BARCODE_OPTIONS);
+      svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label", `Code 128 barcode for ${code}`);
+      svg.setAttribute("shape-rendering", "crispEdges");
+      svg.removeAttribute("hidden");
+    };
+
+    const setActions = (enabled: boolean) => {
+      downloadBtn.disabled = !enabled;
+      copyBtn.disabled = !enabled;
+      shareBtn.disabled = !enabled;
+    };
+
+    const showBlocked = (state: BarcodeCodeState) => {
+      clearSvg();
+      formatEl.hidden = true;
+      empty.hidden = false;
+      empty.textContent = state === "empty" ? EMPTY_COPY : BLOCKED_COPY;
+      exampleBtn.hidden = state !== "empty";
+      setActions(false);
+    };
+
+    const paint = (raw: string) => {
+      current = assessBarcodeCode(raw);
+      const problem = current.state === "invalid" || current.state === "too-long";
+      input.setAttribute("aria-invalid", problem ? "true" : "false");
+
+      if (current.state === "too-long") showAlert("error", TOO_LONG_COPY);
+      else if (current.state === "invalid") showAlert("error", INVALID_COPY);
+      else if (current.state === "long") showAlert("warn", LONG_COPY);
+      else hideAlert();
+
+      if (!canEncodeBarcode(current.state)) {
+        showBlocked(current.state);
+        syncUrl("");
+        return;
+      }
+
+      try {
+        draw(current.code);
+      } catch {
+        showBlocked("invalid");
+        showAlert("error", INVALID_COPY);
+        syncUrl("");
+        return;
+      }
+
+      empty.hidden = true;
+      exampleBtn.hidden = true;
+      formatEl.hidden = false;
+      setActions(true);
+      syncUrl(current.code);
+    };
+
+    const syncUrl = (code: string) => {
+      const url = new URL(window.location.href);
+      if (code) url.searchParams.set("code", code);
+      else url.searchParams.delete("code");
+      history.replaceState(null, "", url);
+    };
+
+    const downloadCurrent = () => {
+      if (!canEncodeBarcode(current.state)) return;
+      const clone = svg.cloneNode(true);
+      if (!(clone instanceof SVGSVGElement)) return;
+      clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      const xml = `<?xml version="1.0" encoding="UTF-8"?>\n${new XMLSerializer().serializeToString(clone)}`;
+      const href = URL.createObjectURL(new Blob([xml], { type: "image/svg+xml;charset=utf-8" }));
+      const link = document.createElement("a");
+      link.href = href;
+      link.download = barcodeFileName(current.code);
+      link.click();
+      URL.revokeObjectURL(href);
+      statusEl.textContent = "SVG downloaded.";
+    };
+
+    const copyCurrent = async () => {
+      if (!canEncodeBarcode(current.state)) return;
+      try {
+        await navigator.clipboard.writeText(current.code);
+        statusEl.textContent = "Code copied.";
+      } catch {
+        statusEl.textContent = "Couldn't copy. Select the code and copy it yourself.";
+      }
+    };
+
+    const shareCurrent = async () => {
+      if (!canEncodeBarcode(current.state)) return;
+      const url = new URL(window.location.href);
+      url.searchParams.set("code", current.code);
+      if (typeof navigator.share === "function") {
+        try {
+          await navigator.share({ title: "KioskPay barcode", text: current.code, url: url.toString() });
+          return;
+        } catch (error) {
+          if (error instanceof DOMException && error.name === "AbortError") return;
+        }
+      }
+      try {
+        await navigator.clipboard.writeText(url.toString());
+        statusEl.textContent = "Link copied.";
+      } catch {
+        statusEl.textContent = "Couldn't share from this browser.";
+      }
+    };
+
+    input.addEventListener("input", () => {
+      statusEl.textContent = "";
+      paint(input.value);
+    });
+    exampleBtn.addEventListener("click", () => {
+      input.value = EXAMPLE_CODE;
+      statusEl.textContent = "";
+      paint(input.value);
+      input.focus();
+    });
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      downloadCurrent();
+    });
+    downloadBtn.addEventListener("click", downloadCurrent);
+    copyBtn.addEventListener("click", () => {
+      void copyCurrent();
+    });
+    shareBtn.addEventListener("click", () => {
+      void shareCurrent();
+    });
+
+    const fromUrl = new URLSearchParams(window.location.search).get("code");
+    if (fromUrl) input.value = fromUrl;
+    paint(input.value);
+  }
+</script>
+
+<style>
+  .tool-page {
+    padding: clamp(6.5rem, 12vh, 8rem) 0 clamp(4rem, 8vw, 6rem);
+  }
+
+  .bench {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    box-shadow: var(--shadow-1);
+  }
+
+  .bench__form,
+  .bench__label {
+    padding: var(--s7);
+  }
+
+  .bench h1 {
+    margin: 0 0 var(--s4);
+    font-size: clamp(2.1rem, 4.8vw, 3.1rem);
+    letter-spacing: var(--ls-display);
+    line-height: 1.08;
+  }
+
+  .bench__lede {
+    margin: 0;
+    max-width: 42ch;
+    color: var(--ink-muted);
+    font-size: var(--fs-lg);
+    line-height: var(--lh-loose);
+  }
+
+  .bench__field {
+    margin-top: var(--s6);
+  }
+
+  .bench__field label {
+    display: block;
+    margin-bottom: var(--s2);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+
+  .bench__field input {
+    width: 100%;
+    height: var(--control-h);
+    padding: 0 var(--s4);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: var(--paper);
+    color: var(--ink);
+    caret-color: var(--ink);
+    font: inherit;
+    font-family: var(--mono);
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+  }
+
+  .bench__field input::placeholder {
+    color: var(--ink-faint);
+    opacity: 1;
+  }
+
+  .bench__field input[aria-invalid="true"] {
+    border-color: #7a1f1f;
+  }
+
+  .bench__hint,
+  .bench__alert {
+    margin: var(--s2) 0 0;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-base);
+  }
+
+  .bench__hint {
+    color: var(--ink-muted);
+  }
+
+  .bench__alert[data-tone="warn"] {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .bench__alert[data-tone="error"] {
+    color: #7a1f1f;
+    font-weight: 600;
+  }
+
+  .bench__label {
+    --label-stripe: 10px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--line);
+    background:
+      linear-gradient(var(--yellow), var(--yellow)) 0 0 / 100% var(--label-stripe) no-repeat,
+      var(--paper);
+    padding-top: calc(var(--s7) + var(--label-stripe));
+  }
+
+  .bench [hidden] {
+    display: none !important;
+  }
+
+  .bench__stage {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s4);
+    min-height: 168px;
+  }
+
+  .bench__stage svg {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .bench__stage svg[hidden] {
+    display: none;
+  }
+
+  .bench__empty {
+    margin: 0;
+    max-width: 24ch;
+    text-align: center;
+    color: var(--ink-muted);
+    line-height: var(--lh-base);
+  }
+
+  .bench__format {
+    margin: var(--s3) 0 0;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: var(--ls-caps);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .bench__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s3);
+    margin-top: var(--s5);
+  }
+
+  .bench__status {
+    min-height: 1.4em;
+    margin: var(--s3) 0 0;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+
+  .tool__after {
+    max-width: 42rem;
+    margin-top: clamp(3rem, 7vw, 5rem);
+  }
+
+  .tool__after h2 {
+    margin: 0 0 var(--s3);
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .tool__after h2 + p {
+    margin: 0 0 var(--s8);
+    max-width: 62ch;
+    color: var(--ink-muted);
+    line-height: var(--lh-loose);
+  }
+
+  .tool__faqs {
+    display: grid;
+  }
+
+  .tool__faqs details {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tool__faqs summary {
+    padding: var(--s5) 0;
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    letter-spacing: var(--ls-tight);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .tool__faqs summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .tool__faqs summary::after {
+    content: "+";
+    float: right;
+    font-weight: 500;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  .tool__faqs details[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .tool__faqs details p {
+    margin: 0 0 var(--s5);
+    max-width: 62ch;
+    color: var(--ink-muted);
+    line-height: var(--lh-loose);
+  }
+
+  @media (min-width: 860px) {
+    .bench {
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    }
+
+    .bench__label {
+      border-top: 0;
+      border-left: 1px solid var(--line);
+    }
+  }
+</style>
