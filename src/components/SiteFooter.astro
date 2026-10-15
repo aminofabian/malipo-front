@@ -15,7 +15,9 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   </div>
 
   <div class="shell site-footer__top">
-    <a class="wordmark" href="/">KioskPay</a>
+    <a class="site-footer__brand" href="/" aria-label="KioskPay home">
+      <img src="/kioskpay-logo-on-dark.png" alt="" width="1098" height="232" />
+    </a>
     <p class="site-footer__tag">Malipo moves the money. KioskPay is the front door.</p>
   </div>
 
@@ -116,8 +118,15 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
 
-  .site-footer .wordmark {
-    letter-spacing: 0.36em;
+  .site-footer__brand {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .site-footer__brand img {
+    display: block;
+    height: 28px;
+    width: auto;
   }
 
   .site-footer__tag {

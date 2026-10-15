@@ -264,15 +264,6 @@ b {
   font-size: var(--fs-xs);
 }
 
-.wordmark {
-  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
-  font-weight: 600;
-  letter-spacing: 0.42em;
-  text-indent: 0.42em;
-  text-transform: uppercase;
-  line-height: 1;
-}
-
 /* Monospace micro-label with a leading rule. */
 .kicker {
   display: inline-flex;

@@ -4,7 +4,9 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
 
 <header class="site-nav">
   <div class="site-nav__bar shell">
-    <a class="wordmark site-nav__brand" href="/" aria-label="KioskPay home">KioskPay</a>
+    <a class="site-nav__brand" href="/" aria-label="KioskPay home">
+      <img src="/kioskpay-logo.png" alt="" width="1098" height="232" />
+    </a>
 
     <div class="site-nav__actions">
       <a class="btn btn-ghost" href={CONNECT_SIGNIN}>Log In</a>
@@ -48,6 +50,14 @@ import { CONNECT_SIGNIN, CONNECT_SIGNUP } from "../lib/urls";
   .site-nav__brand {
     position: relative;
     z-index: 1;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .site-nav__brand img {
+    display: block;
+    height: 32px;
+    width: auto;
   }
 
   .site-nav__actions {
